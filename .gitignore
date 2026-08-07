@@ -1,0 +1,12 @@
+node_modules/
+dist/
+coverage/
+.vite/
+.idea/
+.vscode/
+*.local
+*.log
+android/.gradle/
+android/local.properties
+android/app/build/
+
