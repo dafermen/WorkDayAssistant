@@ -30,3 +30,12 @@ the day while respecting a maximum workday of `07:29:45`.
 
 Phase 0 creates a working application shell and configures the development toolchain. It does not
 implement business calculations, persistence, alerts, or notifications.
+
+## Current phase status
+
+- Phase 0 — Initialization: **DONE**.
+- Phase 1 — Architecture: **DONE**.
+- Phase 2 — Business logic: **NOT STARTED**.
+
+The approved architecture separates pure calculations, React coordination, presentation, and
+platform services. The next task is `TASK-001`, which converts validated `HH:mm:ss` text to seconds.

@@ -11,9 +11,10 @@ Status: **DONE**
 
 ## Phase 1 — Architecture
 
-Status: **NOT STARTED**
+Status: **DONE**
 
-Define types, interfaces, boundaries, hooks, services, utilities, and reusable component structure.
+Defined shared types, service contracts, dependency direction, data flow, testing boundaries, and
+the planned hook, utility, service, and component modules.
 
 ## Phase 2 — Business logic
 
@@ -21,6 +22,8 @@ Status: **NOT STARTED**
 
 Implement and test the time conversion, validation, remaining-time, closing-time, and alert-state
 functions defined by `TASK-001` through `TASK-007`.
+
+Next task: `TASK-001` — implement `convertTimeToSeconds()`.
 
 ## Phase 3 — UI
 

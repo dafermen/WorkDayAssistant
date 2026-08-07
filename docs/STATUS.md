@@ -6,7 +6,7 @@
 
 ## Current phase
 
-**Phase 0 — Project initialization: DONE**
+**Phase 1 — Architecture: DONE**
 
 ## Activities
 
@@ -17,6 +17,21 @@
 | Vitest and React Testing Library  | DONE   | Initial application test created.                       |
 | Capacitor configuration           | DONE   | Android platform generated and web assets synchronized. |
 | Initial documentation             | DONE   | Required documentation files created.                   |
+
+## Phase 1 activities
+
+| Activity               | Status | Notes                                                                  |
+| ---------------------- | ------ | ---------------------------------------------------------------------- |
+| Folder boundaries      | DONE   | Dependency direction documented without moving folders.                |
+| Types and interfaces   | DONE   | Time, workday, persistence, notification, and audio contracts created. |
+| Utility architecture   | DONE   | `TASK-001` through `TASK-007` public APIs fixed.                       |
+| Hook architecture      | DONE   | Coordination responsibilities defined without implementation.          |
+| Service architecture   | DONE   | Platform APIs isolated behind replaceable contracts.                   |
+| Component architecture | DONE   | Reusable presentation responsibilities defined.                        |
+
+## Next task
+
+`TASK-001` — implement and test `convertTimeToSeconds()`.
 
 ## Environment limitations
 

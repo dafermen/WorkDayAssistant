@@ -36,3 +36,28 @@ components do not need to know which platform implementation is active.
 - Capacitor documentation: native project workflow.
 
 Use the official documentation for the installed major versions because tool behavior evolves.
+
+## How the application layers fit together
+
+The application uses one-way dependency rules. Pages compose components and hooks. Hooks coordinate
+pure utilities and service contracts. Utilities depend only on types. Services are the only modules
+that know about browser or Capacitor APIs.
+
+This structure exists so a change to Android notifications cannot accidentally change the workday
+calculation. It also lets a test replace storage or audio with a small fake implementation.
+
+An alternative is to place calculations and `localStorage` calls directly in a React component.
+That may feel faster for a tiny prototype, but the component becomes difficult to test and reuse.
+Another alternative is a global state library. It is unnecessary while the product has one page and
+a small, local state graph.
+
+Common architecture mistakes include:
+
+- importing Capacitor from a presentation component;
+- keeping both inputs and calculated outputs as independent sources of truth;
+- trusting a saved string because TypeScript says a field is `TimeText`;
+- duplicating a time formula inside both a hook and a component;
+- introducing an abstraction without a current boundary or testing need.
+
+When adding a module, first identify its layer in `ARCHITECTURE.md`. If its imports point upward in
+the dependency table, move the behavior to the correct boundary before adding more code.
