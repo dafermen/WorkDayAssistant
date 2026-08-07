@@ -17,6 +17,9 @@ All notable project changes are documented in this file.
 - Phase 1 dependency rules, module responsibilities, state flow, and testing boundaries.
 - Shared time, workday, validation, persistence, notification, and audio service type contracts.
 - Detailed Phase 2 task definitions and approved pure utility APIs.
+- Pure `convertTimeToSeconds()` utility with a public utility export.
+- Table-driven unit tests covering zero, second, minute, hour, maximum-workday, and end-of-day
+  boundaries.
 
 ### Verified
 

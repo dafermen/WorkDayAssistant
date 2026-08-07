@@ -6,7 +6,7 @@
 
 ## Current phase
 
-**Phase 1 — Architecture: DONE**
+**Phase 2 — Business logic: IN PROGRESS**
 
 ## Activities
 
@@ -31,7 +31,15 @@
 
 ## Next task
 
-`TASK-001` — implement and test `convertTimeToSeconds()`.
+`TASK-002` — implement and test `convertSecondsToTime()`.
+
+## Phase 2 activities
+
+| Task                                  | Status      | Notes                                                         |
+| ------------------------------------- | ----------- | ------------------------------------------------------------- |
+| `TASK-001` — `convertTimeToSeconds()` | DONE        | Pure conversion utility and six boundary-focused tests added. |
+| `TASK-002` — `convertSecondsToTime()` | NOT STARTED | Recommended next task.                                        |
+| `TASK-003` through `TASK-007`         | NOT STARTED | Must follow documented dependencies and decisions.            |
 
 ## Environment limitations
 
@@ -41,8 +49,8 @@
 ## Verification
 
 - ESLint: passed.
-- Vitest: 1 test passed.
-- Coverage: 100% for the currently exercised application modules.
+- Vitest: 2 test files and 7 tests passed.
+- Coverage: 100% for the currently exercised application and utility modules.
 - Production web build: passed.
 - Capacitor Android synchronization: passed.
 - Production dependency audit: 0 vulnerabilities.

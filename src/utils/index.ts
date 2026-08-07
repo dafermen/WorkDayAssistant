@@ -1,0 +1,1 @@
+export { convertTimeToSeconds } from './convertTimeToSeconds';

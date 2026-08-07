@@ -35,7 +35,8 @@ implement business calculations, persistence, alerts, or notifications.
 
 - Phase 0 — Initialization: **DONE**.
 - Phase 1 — Architecture: **DONE**.
-- Phase 2 — Business logic: **NOT STARTED**.
+- Phase 2 — Business logic: **IN PROGRESS** (`TASK-001` complete).
 
 The approved architecture separates pure calculations, React coordination, presentation, and
-platform services. The next task is `TASK-001`, which converts validated `HH:mm:ss` text to seconds.
+platform services. The next task is `TASK-002`, which formats a non-negative duration as
+`HH:mm:ss`.

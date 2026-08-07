@@ -14,17 +14,20 @@
 - Added public type contracts for time values, workday data, validation, persistence, notifications,
   and audio alerts.
 - Defined the public APIs and detailed task records for `TASK-001` through `TASK-007`.
+- Completed `TASK-001` with a pure `convertTimeToSeconds()` implementation and six focused unit
+  tests.
+- Verified the task with formatting, ESLint, the 90% coverage gate, and the production build.
 
 ## Pending
 
-- Implement `TASK-001` — `convertTimeToSeconds()` — with focused unit tests.
+- Implement `TASK-002` — `convertSecondsToTime()` — with focused unit tests.
 
 ## Blocked
 
 - Native Android compilation requires Java and the Android SDK, which are not available in the
   current command-line environment.
 - Later business-logic tasks have explicit unanswered behavior questions recorded in
-  `ARCHITECTURE.md`; none block `TASK-001`.
+  `ARCHITECTURE.md`; none block `TASK-002`.
 
 ## Files modified
 
@@ -34,6 +37,8 @@
 - `tests` setup and initial application test.
 - All files under `docs`.
 - `src/types/time.ts`, `src/types/workday.ts`, `src/types/services.ts`, and `src/types/index.ts`.
+- `src/utils/convertTimeToSeconds.ts`, `src/utils/index.ts`, and
+  `tests/utils/convertTimeToSeconds.test.ts`.
 
 ## Risks
 
@@ -43,4 +48,4 @@
 
 ## Recommended next task
 
-Begin `TASK-001` to implement the pure `convertTimeToSeconds()` utility.
+Begin `TASK-002` to implement the inverse `convertSecondsToTime()` utility.

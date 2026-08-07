@@ -73,8 +73,8 @@ unambiguous.
 `convertTimeToSeconds(value: TimeText): DurationSeconds`. Invalid text is outside this task because
 runtime validation belongs to `TASK-003`.
 
-**Files to modify:** `src/utils/convertTimeToSeconds.ts`, its unit test, the type-only utility export,
-and required session documentation.
+**Files to modify:** `src/utils/convertTimeToSeconds.ts`, its unit test, the utility export, and
+required session documentation.
 
 **Dependencies:** `PHASE1-001` and the `TimeText`/`DurationSeconds` contracts.
 
@@ -90,7 +90,7 @@ format, tests, coverage, and production build pass.
 **Documentation to update:** `CHANGELOG.md`, `STATUS.md`, `SESSION_HANDOFF.md`,
 `JUNIOR_DEVELOPER_GUIDE.md`, and `TESTING.md`.
 
-**Status:** NOT STARTED
+**Status:** DONE
 
 ## TASK-002 — Create `convertSecondsToTime()`
 

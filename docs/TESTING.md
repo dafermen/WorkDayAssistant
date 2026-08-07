@@ -27,3 +27,12 @@ npm run test:coverage
 
 The initial application test passes and the currently exercised application modules report 100%
 coverage. Coverage must be reassessed as each production module is added.
+
+## TASK-001 coverage
+
+`convertTimeToSeconds()` uses a table-driven test so every case exercises the same public behavior
+without duplicated test code. The cases cover zero, the smallest second, a complete minute, a
+complete hour, the maximum workday, and the largest valid clock value.
+
+Invalid text is intentionally excluded because `TASK-003` owns runtime validation. Tests should not
+force one task to implement another task's responsibility.

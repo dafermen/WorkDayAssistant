@@ -61,3 +61,23 @@ Common architecture mistakes include:
 
 When adding a module, first identify its layer in `ARCHITECTURE.md`. If its imports point upward in
 the dependency table, move the behavior to the correct boundary before adding more code.
+
+## Converting `HH:mm:ss` to seconds
+
+`convertTimeToSeconds()` changes three time segments into one scalar value:
+
+`hours × 3600 + minutes × 60 + seconds`
+
+This representation exists because addition and subtraction are safer in one unit. Keeping three
+separate fields would require every later calculation to repeat carry and borrow rules.
+
+The function assumes its `TimeText` argument has already passed runtime validation. Mixing
+validation into this task would duplicate the responsibility assigned to `validateTime()` and make
+each utility harder to test independently.
+
+An alternative is JavaScript's `Date`, but a worked duration is not a calendar date and time-zone or
+daylight-saving behavior would introduce irrelevant complexity. Another alternative is storing
+milliseconds; seconds are the smallest required precision, so milliseconds would not add value.
+
+Common mistakes include using `60` seconds per hour, concatenating numeric text instead of converting
+it, or accepting raw input without validation at the UI boundary.

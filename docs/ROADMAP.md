@@ -18,12 +18,14 @@ the planned hook, utility, service, and component modules.
 
 ## Phase 2 — Business logic
 
-Status: **NOT STARTED**
+Status: **IN PROGRESS**
 
 Implement and test the time conversion, validation, remaining-time, closing-time, and alert-state
 functions defined by `TASK-001` through `TASK-007`.
 
-Next task: `TASK-001` — implement `convertTimeToSeconds()`.
+Completed: `TASK-001` — `convertTimeToSeconds()`.
+
+Next task: `TASK-002` — implement `convertSecondsToTime()`.
 
 ## Phase 3 — UI
 
