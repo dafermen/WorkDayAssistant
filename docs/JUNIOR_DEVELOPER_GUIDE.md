@@ -81,3 +81,21 @@ milliseconds; seconds are the smallest required precision, so milliseconds would
 
 Common mistakes include using `60` seconds per hour, concatenating numeric text instead of converting
 it, or accepting raw input without validation at the UI boundary.
+
+## Formatting seconds as `HH:mm:ss`
+
+`convertSecondsToTime()` reverses the scalar representation by using integer division and
+remainders. Hours use division by 3,600. Minutes use the remainder after complete hours, and seconds
+use the remainder after complete minutes.
+
+Every segment is padded to two characters in one utility. Centralizing this rule prevents one card
+from displaying `7:9:5` while another displays the required `07:09:05`.
+
+The function does not use `Date` because it formats a duration rather than a calendar instant. A
+date-based approach could introduce time-zone behavior and would hide the simple arithmetic that the
+business rule actually needs.
+
+The input contract is a non-negative whole number of seconds. Validation of arbitrary external
+numbers belongs at the boundary that receives them; business utilities will produce whole seconds.
+Common mistakes include forgetting the remainder after calculating hours, padding the entire string
+instead of each segment, or rounding minutes before seconds are extracted.

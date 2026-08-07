@@ -36,3 +36,13 @@ complete hour, the maximum workday, and the largest valid clock value.
 
 Invalid text is intentionally excluded because `TASK-003` owns runtime validation. Tests should not
 force one task to implement another task's responsibility.
+
+## TASK-002 coverage
+
+`convertSecondsToTime()` has table-driven cases immediately before and at minute and hour changes,
+plus the maximum workday and `23:59:59`. Testing both sides of a boundary catches remainder mistakes
+that a single typical value would miss.
+
+Negative and fractional values are excluded because the public contract accepts a non-negative
+whole-second duration. The boundary producing a `DurationSeconds` value is responsible for honoring
+that precondition.

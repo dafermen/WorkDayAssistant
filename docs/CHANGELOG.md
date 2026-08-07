@@ -20,6 +20,9 @@ All notable project changes are documented in this file.
 - Pure `convertTimeToSeconds()` utility with a public utility export.
 - Table-driven unit tests covering zero, second, minute, hour, maximum-workday, and end-of-day
   boundaries.
+- Pure `convertSecondsToTime()` utility with centralized segment padding and public export.
+- Table-driven formatting tests covering second, minute, hour, maximum-workday, and end-of-day
+  boundaries.
 
 ### Verified
 

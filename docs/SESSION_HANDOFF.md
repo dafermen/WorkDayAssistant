@@ -16,18 +16,22 @@
 - Defined the public APIs and detailed task records for `TASK-001` through `TASK-007`.
 - Completed `TASK-001` with a pure `convertTimeToSeconds()` implementation and six focused unit
   tests.
+- Completed `TASK-002` with a pure `convertSecondsToTime()` implementation and eight focused unit
+  tests.
 - Verified the task with formatting, ESLint, the 90% coverage gate, and the production build.
 
 ## Pending
 
-- Implement `TASK-002` — `convertSecondsToTime()` — with focused unit tests.
+- Resolve the documented whitespace policy for `TASK-003`, then implement `validateTime()`.
 
 ## Blocked
 
 - Native Android compilation requires Java and the Android SDK, which are not available in the
   current command-line environment.
-- Later business-logic tasks have explicit unanswered behavior questions recorded in
-  `ARCHITECTURE.md`; none block `TASK-002`.
+- `TASK-003` requires an explicit decision: reject surrounding whitespace or normalize it before
+  validating `HH:mm:ss`.
+- Later business-logic tasks have additional unanswered behavior questions recorded in
+  `ARCHITECTURE.md`.
 
 ## Files modified
 
@@ -39,6 +43,8 @@
 - `src/types/time.ts`, `src/types/workday.ts`, `src/types/services.ts`, and `src/types/index.ts`.
 - `src/utils/convertTimeToSeconds.ts`, `src/utils/index.ts`, and
   `tests/utils/convertTimeToSeconds.test.ts`.
+- `src/utils/convertSecondsToTime.ts`, `src/utils/index.ts`, and
+  `tests/utils/convertSecondsToTime.test.ts`.
 
 ## Risks
 
@@ -48,4 +54,4 @@
 
 ## Recommended next task
 
-Begin `TASK-002` to implement the inverse `convertSecondsToTime()` utility.
+Resolve the whitespace policy, then begin `TASK-003` to implement `validateTime()`.

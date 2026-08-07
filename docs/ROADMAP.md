@@ -25,7 +25,9 @@ functions defined by `TASK-001` through `TASK-007`.
 
 Completed: `TASK-001` — `convertTimeToSeconds()`.
 
-Next task: `TASK-002` — implement `convertSecondsToTime()`.
+Completed: `TASK-002` — `convertSecondsToTime()`.
+
+Next task: resolve the whitespace policy, then implement `TASK-003` — `validateTime()`.
 
 ## Phase 3 — UI
 

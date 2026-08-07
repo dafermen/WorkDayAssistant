@@ -31,15 +31,16 @@
 
 ## Next task
 
-`TASK-002` — implement and test `convertSecondsToTime()`.
+Resolve the `TASK-003` whitespace decision, then implement and test `validateTime()`.
 
 ## Phase 2 activities
 
-| Task                                  | Status      | Notes                                                         |
-| ------------------------------------- | ----------- | ------------------------------------------------------------- |
-| `TASK-001` — `convertTimeToSeconds()` | DONE        | Pure conversion utility and six boundary-focused tests added. |
-| `TASK-002` — `convertSecondsToTime()` | NOT STARTED | Recommended next task.                                        |
-| `TASK-003` through `TASK-007`         | NOT STARTED | Must follow documented dependencies and decisions.            |
+| Task                                  | Status      | Notes                                                           |
+| ------------------------------------- | ----------- | --------------------------------------------------------------- |
+| `TASK-001` — `convertTimeToSeconds()` | DONE        | Pure conversion utility and six boundary-focused tests added.   |
+| `TASK-002` — `convertSecondsToTime()` | DONE        | Pure formatting utility and eight boundary-focused tests added. |
+| `TASK-003` — `validateTime()`         | BLOCKED     | Requires an explicit whitespace-handling decision.              |
+| `TASK-004` through `TASK-007`         | NOT STARTED | Must follow documented dependencies and decisions.              |
 
 ## Environment limitations
 
@@ -49,7 +50,7 @@
 ## Verification
 
 - ESLint: passed.
-- Vitest: 2 test files and 7 tests passed.
+- Vitest: 3 test files and 15 tests passed.
 - Coverage: 100% for the currently exercised application and utility modules.
 - Production web build: passed.
 - Capacitor Android synchronization: passed.

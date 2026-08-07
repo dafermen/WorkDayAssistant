@@ -94,7 +94,7 @@ format, tests, coverage, and production build pass.
 
 ## TASK-002 — Create `convertSecondsToTime()`
 
-**Objective:** Convert a non-negative duration in seconds into `HH:mm:ss`.
+**Objective:** Convert a non-negative whole-second duration into `HH:mm:ss`.
 
 **Files to modify:** One utility module, its unit test, utility exports, and required documentation.
 
@@ -109,7 +109,7 @@ two-digit segments.
 
 **Documentation to update:** Standard session documentation and testing guide.
 
-**Status:** NOT STARTED
+**Status:** DONE
 
 ## TASK-003 — Create `validateTime()`
 
