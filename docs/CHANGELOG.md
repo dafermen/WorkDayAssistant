@@ -48,6 +48,7 @@ All notable project changes are documented in this file.
 
 - ESLint, formatting, unit tests, 90% coverage thresholds, production build, and Capacitor sync.
 - Secret-pattern scans for tracked files and local Git history before initial GitHub publication.
+- Initial `main` publication to GitHub completed without rewriting remote history.
 
 ### Changed
 

@@ -29,7 +29,7 @@
 - Completed `TASK-020` with the reusable accessible `TimeInput` component and four behavior tests.
 - Completed `TASK-021` with the `WorkedTimeInput` wrapper and three forwarding tests.
 - Completed `TASK-022` with the `LastTaskTimeInput` wrapper and three forwarding tests.
-- Prepared stable development milestone `v0.1.0` for the initial GitHub publication.
+- Published stable development milestone `v0.1.0` to the GitHub repository.
 - Updated stable dependencies, added CI/Dependabot/security policy, and completed secret scans.
 - Updated GitHub README and captured the actual current application build.
 - Verified the task with formatting, ESLint, the 90% coverage gate, and the production build.

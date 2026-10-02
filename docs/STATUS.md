@@ -70,4 +70,5 @@
 - Development dependency audit: 3 accepted moderate advisories in a Capacitor CLI transitive
   dependency; documented in `SECURITY_AUDIT.md`.
 - Tracked-file and Git-history secret scans: no detected credentials or private keys.
-- GitHub publication baseline: CI, Dependabot, security policy, and README prepared.
+- GitHub publication: `main` published with CI, Dependabot, security policy, audit documentation,
+  and a real application screenshot; annotated release tag `v0.1.0` created for this baseline.

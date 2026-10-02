@@ -327,4 +327,4 @@ from the real build; CI and Dependabot configured; remote push and tag succeed.
 **Documentation to update:** README, security policy/audit, GitHub workflow, changelog, status, and
 session handoff.
 
-**Status:** IN PROGRESS
+**Status:** DONE
