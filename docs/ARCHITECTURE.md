@@ -59,15 +59,15 @@ arguments. Utilities never read the clock, storage, DOM, or Capacitor directly.
 
 The approved Phase 2 APIs are:
 
-| Task       | Public API                                                                    | Responsibility                                           |
-| ---------- | ----------------------------------------------------------------------------- | -------------------------------------------------------- |
-| `TASK-001` | `convertTimeToSeconds(value: TimeText): DurationSeconds`                      | Convert validated `HH:mm:ss` text to a numeric duration. |
-| `TASK-002` | `convertSecondsToTime(value: DurationSeconds): TimeText`                      | Format a non-negative duration as `HH:mm:ss`.            |
-| `TASK-003` | `validateTime(value: RawTimeInput): value is TimeText`                        | Reject malformed or out-of-range time text.              |
-| `TASK-004` | `calculateRemainingTime(worked: DurationSeconds): DurationSeconds`            | Compare worked time with the maximum workday.            |
-| `TASK-005` | `calculateClosingTime(start: TimeText, remaining: DurationSeconds): TimeText` | Add the remaining duration to the final-task start time. |
-| `TASK-006` | `isOneMinuteRemaining(remaining: DurationSeconds): boolean`                   | Identify the one-minute alert state.                     |
-| `TASK-007` | `isClosingTime(remaining: DurationSeconds): boolean`                          | Identify the closing alert state.                        |
+| Task       | Public API                                                                    | Responsibility                                              |
+| ---------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| `TASK-001` | `convertTimeToSeconds(value: TimeText): DurationSeconds`                      | Convert validated `HH:mm:ss` text to a numeric duration.    |
+| `TASK-002` | `convertSecondsToTime(value: DurationSeconds): TimeText`                      | Format a non-negative duration as `HH:mm:ss`.               |
+| `TASK-003` | `validateTime(value: RawTimeInput): TimeText \| null`                         | Normalize external whitespace and reject invalid time text. |
+| `TASK-004` | `calculateRemainingTime(worked: DurationSeconds): DurationSeconds`            | Compare worked time with the maximum workday.               |
+| `TASK-005` | `calculateClosingTime(start: TimeText, remaining: DurationSeconds): TimeText` | Add the remaining duration to the final-task start time.    |
+| `TASK-006` | `isOneMinuteRemaining(remaining: DurationSeconds): boolean`                   | Identify the one-minute alert state.                        |
+| `TASK-007` | `isClosingTime(remaining: DurationSeconds): boolean`                          | Identify the closing alert state.                           |
 
 The maximum workday constant will be introduced with `TASK-004`, the first task that needs it. This
 avoids adding unused production code during the architecture phase.
@@ -153,12 +153,17 @@ reviewed only if later requirements introduce multiple independent pages or comp
 
 The project-wide minimum remains 90% for statements, branches, functions, and lines.
 
+## Resolved decisions
+
+- `TASK-003`: surrounding whitespace is removed before validation. Internal whitespace is rejected.
+  The function returns the normalized `TimeText` or `null` because a boolean type predicate cannot
+  safely expose a transformed string.
+
 ## Explicit decisions deferred to their tasks
 
 The master requirements do not define the following behavior. The named task must resolve and
 document the question before implementation; no current code assumes an answer.
 
-- `TASK-003`: whether whitespace surrounding `HH:mm:ss` is rejected or normalized.
 - `TASK-004`: whether worked time above `07:29:45` returns zero or a validation error.
 - `TASK-005`: whether a closing time that crosses midnight wraps to the next clock day and whether
   the date must be exposed.

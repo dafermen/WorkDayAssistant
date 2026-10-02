@@ -31,16 +31,17 @@
 
 ## Next task
 
-Resolve the `TASK-003` whitespace decision, then implement and test `validateTime()`.
+Resolve the `TASK-004` over-limit decision, then implement and test `calculateRemainingTime()`.
 
 ## Phase 2 activities
 
-| Task                                  | Status      | Notes                                                           |
-| ------------------------------------- | ----------- | --------------------------------------------------------------- |
-| `TASK-001` — `convertTimeToSeconds()` | DONE        | Pure conversion utility and six boundary-focused tests added.   |
-| `TASK-002` — `convertSecondsToTime()` | DONE        | Pure formatting utility and eight boundary-focused tests added. |
-| `TASK-003` — `validateTime()`         | BLOCKED     | Requires an explicit whitespace-handling decision.              |
-| `TASK-004` through `TASK-007`         | NOT STARTED | Must follow documented dependencies and decisions.              |
+| Task                                    | Status      | Notes                                                           |
+| --------------------------------------- | ----------- | --------------------------------------------------------------- |
+| `TASK-001` — `convertTimeToSeconds()`   | DONE        | Pure conversion utility and six boundary-focused tests added.   |
+| `TASK-002` — `convertSecondsToTime()`   | DONE        | Pure formatting utility and eight boundary-focused tests added. |
+| `TASK-003` — `validateTime()`           | DONE        | External whitespace is removed; invalid formats return `null`.  |
+| `TASK-004` — `calculateRemainingTime()` | BLOCKED     | Requires an explicit over-limit behavior decision.              |
+| `TASK-005` through `TASK-007`           | NOT STARTED | Must follow documented dependencies and decisions.              |
 
 ## Environment limitations
 
@@ -50,7 +51,7 @@ Resolve the `TASK-003` whitespace decision, then implement and test `validateTim
 ## Verification
 
 - ESLint: passed.
-- Vitest: 3 test files and 15 tests passed.
+- Vitest: 4 test files and 33 tests passed.
 - Coverage: 100% for the currently exercised application and utility modules.
 - Production web build: passed.
 - Capacitor Android synchronization: passed.

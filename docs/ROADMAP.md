@@ -27,7 +27,10 @@ Completed: `TASK-001` — `convertTimeToSeconds()`.
 
 Completed: `TASK-002` — `convertSecondsToTime()`.
 
-Next task: resolve the whitespace policy, then implement `TASK-003` — `validateTime()`.
+Completed: `TASK-003` — normalize and validate `HH:mm:ss` input.
+
+Next task: resolve the over-limit policy, then implement `TASK-004` —
+`calculateRemainingTime()`.
 
 ## Phase 3 — UI
 

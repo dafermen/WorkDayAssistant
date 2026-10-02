@@ -46,3 +46,12 @@ that a single typical value would miss.
 Negative and fractional values are excluded because the public contract accepts a non-negative
 whole-second duration. The boundary producing a `DurationSeconds` value is responsible for honoring
 that precondition.
+
+## TASK-003 coverage
+
+`validateTime()` tests exact boundary values and normalization of spaces, tabs, and line breaks.
+Invalid cases distinguish missing values, malformed structure, internal whitespace, extra content,
+and out-of-range hour, minute, and second segments.
+
+Returning the expected normalized text is asserted directly. This verifies both validation and the
+user-approved cleanup behavior rather than checking only a boolean result.

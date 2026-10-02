@@ -35,8 +35,8 @@ implement business calculations, persistence, alerts, or notifications.
 
 - Phase 0 — Initialization: **DONE**.
 - Phase 1 — Architecture: **DONE**.
-- Phase 2 — Business logic: **IN PROGRESS** (`TASK-001` and `TASK-002` complete).
+- Phase 2 — Business logic: **IN PROGRESS** (`TASK-001` through `TASK-003` complete).
 
 The approved architecture separates pure calculations, React coordination, presentation, and
-platform services. The next task is `TASK-003`, which validates raw `HH:mm:ss` text after its
-whitespace policy is explicitly decided.
+platform services. The next task is `TASK-004`, which calculates remaining work time after its
+over-limit behavior is explicitly decided.

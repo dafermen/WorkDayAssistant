@@ -113,23 +113,23 @@ two-digit segments.
 
 ## TASK-003 — Create `validateTime()`
 
-**Objective:** Narrow raw input to valid `TimeText` at runtime.
+**Objective:** Normalize surrounding whitespace and narrow raw input to valid `TimeText` at runtime.
 
 **Files to modify:** One utility module, its unit test, utility exports, and required documentation.
 
-**Dependencies:** Time type contracts and an explicit decision about surrounding whitespace.
+**Dependencies:** Time type contracts and the approved policy to remove surrounding whitespace.
 
 **Estimated time:** 45–75 minutes.
 
-**Acceptance criteria:** Covers required, structural, and range validation including hour, minute,
-and second boundaries.
+**Acceptance criteria:** Returns normalized `TimeText` or `null`; covers required, structural, and
+range validation including hour, minute, and second boundaries; rejects internal whitespace.
 
 **Definition of Done:** Deferred validation decision is documented; tests and all checks pass.
 
 **Documentation to update:** Architecture decision, standard session documentation, junior guide,
 and testing guide.
 
-**Status:** NOT STARTED
+**Status:** DONE
 
 ## TASK-004 — Create `calculateRemainingTime()`
 

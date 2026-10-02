@@ -23,6 +23,9 @@ All notable project changes are documented in this file.
 - Pure `convertSecondsToTime()` utility with centralized segment padding and public export.
 - Table-driven formatting tests covering second, minute, hour, maximum-workday, and end-of-day
   boundaries.
+- `validateTime()` now removes surrounding whitespace and returns normalized `HH:mm:ss` text or
+  `null`.
+- Validation tests for empty, malformed, internally spaced, and out-of-range values.
 
 ### Verified
 
@@ -40,3 +43,5 @@ All notable project changes are documented in this file.
 - Time calculations remain pure and depend only on shared types.
 - Components cannot call persistence, browser, or Capacitor APIs directly.
 - React hooks coordinate injected service contracts so integrations can be replaced in tests.
+- Surrounding whitespace is normalized at the time-validation boundary; internal whitespace remains
+  invalid so typing mistakes are not silently repaired.

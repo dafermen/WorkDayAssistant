@@ -99,3 +99,17 @@ The input contract is a non-negative whole number of seconds. Validation of arbi
 numbers belongs at the boundary that receives them; business utilities will produce whole seconds.
 Common mistakes include forgetting the remainder after calculating hours, padding the entire string
 instead of each segment, or rounding minutes before seconds are extracted.
+
+## Normalizing and validating time text
+
+`validateTime()` first applies `trim()` so harmless spaces, tabs, or line breaks around a pasted
+value do not cause an error. It then requires exactly two digits for each segment, a 24-hour value
+from `00` through `23`, and minutes and seconds from `00` through `59`.
+
+The function returns the normalized `TimeText`, not merely `true`. A boolean could confirm that the
+trimmed copy is valid while leaving the caller with the original string that still contains spaces.
+Returning the accepted value keeps the runtime data consistent with the TypeScript type.
+
+Internal spaces are rejected because removing characters inside the value could hide a typing error.
+Common mistakes include using a pattern that accepts `99:99:99`, validating before trimming, or
+casting raw user input to `TimeText` without a runtime check.
