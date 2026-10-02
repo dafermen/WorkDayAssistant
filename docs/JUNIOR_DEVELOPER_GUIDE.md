@@ -143,3 +143,13 @@ creating a date because the inputs contain no calendar date. The UI can safely s
 
 Common mistakes include losing the rollover information after applying modulo, creating dates in the
 device time zone for simple arithmetic, or assuming every result belongs to the same day.
+
+## Detecting the final-minute window
+
+`isOneMinuteRemaining()` returns true for every whole-second value from 60 through 1. A repeating
+timer may skip the exact value 60 because browsers and mobile devices can delay callbacks. Checking
+the entire window makes the business state reliable despite that timing behavior.
+
+Zero is excluded because it represents closing time. Negative values are also excluded defensively.
+The future alert hook must remember whether it has already played the warning so a true predicate on
+multiple timer ticks does not repeat the sound every second.

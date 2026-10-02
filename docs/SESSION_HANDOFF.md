@@ -23,17 +23,18 @@
 - Completed `TASK-004` with an explicit over-limit result, shared workday constants, and seven
   focused tests.
 - Completed `TASK-005` with wrapped clock output, a day offset, and seven focused tests.
+- Completed `TASK-006` with an inclusive final-minute predicate and six boundary tests.
 - Verified the task with formatting, ESLint, the 90% coverage gate, and the production build.
 
 ## Pending
 
-- Implement `TASK-006` with the documented inclusive final-minute warning window.
+- Implement `TASK-007` with the documented zero-or-less closing boundary.
 
 ## Blocked
 
 - Native Android compilation requires Java and the Android SDK, which are not available in the
   current command-line environment.
-- No blocker for `TASK-006`; the final-minute policy is documented for implementation.
+- No blocker for `TASK-007`; the closing boundary is documented for implementation.
 - Later business-logic tasks have additional unanswered behavior questions recorded in
   `ARCHITECTURE.md`.
 
@@ -54,6 +55,8 @@
   exports, and `tests/utils/calculateRemainingTime.test.ts`.
 - `src/utils/calculateClosingTime.ts`, `ClosingTimeResult`, exports, and
   `tests/utils/calculateClosingTime.test.ts`.
+- `src/utils/isOneMinuteRemaining.ts`, exports, and
+  `tests/utils/isOneMinuteRemaining.test.ts`.
 
 ## Risks
 
@@ -63,4 +66,4 @@
 
 ## Recommended next task
 
-Begin `TASK-006` to implement the final-minute alert predicate.
+Begin `TASK-007` to implement the closing-time predicate.

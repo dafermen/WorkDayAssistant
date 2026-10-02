@@ -31,6 +31,8 @@ All notable project changes are documented in this file.
 - Remaining-time tests for zero, partial, exact-limit, and exceeded workdays.
 - `calculateClosingTime()` with wrapped 24-hour output and a separate day offset.
 - Closing-time tests for arithmetic carry and same-day/midnight rollover cases.
+- `isOneMinuteRemaining()` for the inclusive final-minute warning window.
+- Boundary tests above, inside, and after the final-minute window.
 
 ### Verified
 
@@ -54,3 +56,4 @@ All notable project changes are documented in this file.
   duration; negative countdowns are never exposed.
 - Midnight rollover is represented with `dayOffset`; no calendar date is fabricated from time-only
   input.
+- The final-minute warning is active from 60 through 1 second; zero is reserved for closing state.

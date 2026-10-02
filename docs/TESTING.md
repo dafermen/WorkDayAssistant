@@ -70,3 +70,8 @@ completed valid workday from an exceeded one.
 `calculateClosingTime()` tests no remaining time, ordinary addition, carries between units, the
 maximum remaining duration, and multiple midnight boundaries. Every assertion checks both the
 wrapped clock text and `dayOffset` so rollover information cannot be lost silently.
+
+## TASK-006 coverage
+
+`isOneMinuteRemaining()` tests 61, 60, 59, 1, 0, and -1 seconds. These values cover both sides of
+each boundary and confirm that final-minute and closing states never overlap.

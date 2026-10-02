@@ -31,7 +31,7 @@
 
 ## Next task
 
-Implement and test `TASK-006` using the documented final-minute window.
+Implement and test `TASK-007` using the documented closing boundary.
 
 ## Phase 2 activities
 
@@ -42,7 +42,7 @@ Implement and test `TASK-006` using the documented final-minute window.
 | `TASK-003` — `validateTime()`           | DONE        | External whitespace is removed; invalid formats return `null`.  |
 | `TASK-004` — `calculateRemainingTime()` | DONE        | Returns an explicit warning state with the excess duration.     |
 | `TASK-005` — `calculateClosingTime()`   | DONE        | Returns wrapped time and `dayOffset` after midnight.            |
-| `TASK-006` — `isOneMinuteRemaining()`   | NOT STARTED | Use the inclusive 1–60 second warning window.                   |
+| `TASK-006` — `isOneMinuteRemaining()`   | DONE        | True throughout the inclusive 1–60 second warning window.       |
 | `TASK-007` — `isClosingTime()`          | NOT STARTED | Begins when remaining time reaches zero.                        |
 
 ## Environment limitations
@@ -53,7 +53,7 @@ Implement and test `TASK-006` using the documented final-minute window.
 ## Verification
 
 - ESLint: passed.
-- Vitest: 6 test files and 47 tests passed.
+- Vitest: 7 test files and 53 tests passed.
 - Coverage: 100% for the currently exercised application and utility modules.
 - Production web build: passed.
 - Capacitor Android synchronization: passed.

@@ -176,17 +176,18 @@ when the result crosses midnight.
 
 **Files to modify:** One utility module, its unit test, exports, and required documentation.
 
-**Dependencies:** An explicit alert-window decision.
+**Dependencies:** The approved inclusive 1–60 second alert window.
 
 **Estimated time:** 30–45 minutes.
 
-**Acceptance criteria:** Covers values immediately before, within, and after the approved boundary.
+**Acceptance criteria:** Returns true from 60 through 1 second and false above 60, at zero, and for
+defensive negative values.
 
 **Definition of Done:** Deferred alert-window decision is documented; tests and all checks pass.
 
 **Documentation to update:** Architecture decision and standard session documentation.
 
-**Status:** NOT STARTED
+**Status:** DONE
 
 ## TASK-007 — Create `isClosingTime()`
 

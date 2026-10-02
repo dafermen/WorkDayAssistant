@@ -162,13 +162,12 @@ The project-wide minimum remains 90% for statements, branches, functions, and li
   number of excess seconds. This gives the UI an explicit warning state without a negative countdown.
 - `TASK-005`: closing times wrap to a valid 24-hour clock and return `dayOffset`. The UI can show
   “next day” without inventing a calendar date that was never provided.
+- `TASK-006`: the one-minute warning window is inclusive from 60 through 1 second. Zero belongs to
+  the closing state; alert coordination must trigger sound only once when entering this window.
 
 ## Explicit decisions deferred to their tasks
 
 The master requirements do not define the following behavior. The named task must resolve and
 document the question before implementation; no current code assumes an answer.
 
-- `TASK-006`: whether the one-minute alert is true only at exactly 60 seconds or throughout the last
-  minute.
-
-These deferred decisions do not block `TASK-001`, whose input is already validated `TimeText`.
+There are no unresolved Phase 2 business-logic decisions.

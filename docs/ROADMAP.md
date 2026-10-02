@@ -33,7 +33,9 @@ Completed: `TASK-004` — calculate remaining time and signal an exceeded workda
 
 Completed: `TASK-005` — calculate the closing time with midnight rollover metadata.
 
-Next task: implement `TASK-006` — `isOneMinuteRemaining()`.
+Completed: `TASK-006` — identify the inclusive final-minute warning window.
+
+Next task: implement `TASK-007` — `isClosingTime()`.
 
 ## Phase 3 — UI
 
