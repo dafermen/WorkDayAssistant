@@ -76,3 +76,7 @@ All notable project changes are documented in this file.
   input.
 - The final-minute warning is active from 60 through 1 second; zero is reserved for closing state.
 - Closing state remains active for negative values after delayed or suspended timer updates.
+
+## DOC-STD-20261002
+
+Documentation navigation and canonical sources updated; no product task or release gate is accepted by this change.

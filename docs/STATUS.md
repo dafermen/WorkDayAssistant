@@ -72,3 +72,7 @@
 - Tracked-file and Git-history secret scans: no detected credentials or private keys.
 - GitHub publication: `main` published with CI, Dependabot, security policy, audit documentation,
   and a real application screenshot; annotated release tag `v0.1.0` created for this baseline.
+
+## DOC-STD-20261002 — Documentation organization
+
+The [documentation map](README.md) now identifies canonical sources and maintenance rules. Existing implementation milestones and pending acceptance are unchanged. Validation and publication are tracked separately for this documentation-only change.

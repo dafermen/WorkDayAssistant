@@ -84,3 +84,7 @@
 ## Recommended next task
 
 Begin `TASK-023` to create the countdown presentation component.
+
+## DOC-STD-20261002
+
+Documentation navigation and canonical sources updated; no product task or release gate is accepted by this change.
