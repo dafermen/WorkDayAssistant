@@ -18,7 +18,7 @@ the planned hook, utility, service, and component modules.
 
 ## Phase 2 — Business logic
 
-Status: **IN PROGRESS**
+Status: **DONE**
 
 Implement and test the time conversion, validation, remaining-time, closing-time, and alert-state
 functions defined by `TASK-001` through `TASK-007`.
@@ -35,13 +35,17 @@ Completed: `TASK-005` — calculate the closing time with midnight rollover meta
 
 Completed: `TASK-006` — identify the inclusive final-minute warning window.
 
-Next task: implement `TASK-007` — `isClosingTime()`.
+Completed: `TASK-007` — identify closing state at zero or below.
+
+All planned Phase 2 tasks are complete.
 
 ## Phase 3 — UI
 
 Status: **NOT STARTED**
 
 Build the input, countdown, result, alert, and theme components in small reusable tasks.
+
+Next task: `TASK-020` — create the reusable accessible `TimeInput` component.
 
 ## Phase 4 — Persistence
 

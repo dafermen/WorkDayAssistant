@@ -75,3 +75,13 @@ wrapped clock text and `dayOffset` so rollover information cannot be lost silent
 
 `isOneMinuteRemaining()` tests 61, 60, 59, 1, 0, and -1 seconds. These values cover both sides of
 each boundary and confirm that final-minute and closing states never overlap.
+
+## TASK-007 coverage
+
+`isClosingTime()` tests ordinary positive values, zero, and a defensive negative value. The tests
+confirm that a timer delayed past zero remains in closing state.
+
+## Phase 2 result
+
+All seven business-logic utilities are covered by boundary-focused unit tests. The project-wide
+coverage gate remains at 90%; the current measured result is 100%.

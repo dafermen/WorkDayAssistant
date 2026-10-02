@@ -6,7 +6,7 @@
 
 ## Current phase
 
-**Phase 2 — Business logic: IN PROGRESS**
+**Phase 2 — Business logic: DONE**
 
 ## Activities
 
@@ -31,19 +31,19 @@
 
 ## Next task
 
-Implement and test `TASK-007` using the documented closing boundary.
+`TASK-020` — create the reusable accessible `TimeInput` component.
 
 ## Phase 2 activities
 
-| Task                                    | Status      | Notes                                                           |
-| --------------------------------------- | ----------- | --------------------------------------------------------------- |
-| `TASK-001` — `convertTimeToSeconds()`   | DONE        | Pure conversion utility and six boundary-focused tests added.   |
-| `TASK-002` — `convertSecondsToTime()`   | DONE        | Pure formatting utility and eight boundary-focused tests added. |
-| `TASK-003` — `validateTime()`           | DONE        | External whitespace is removed; invalid formats return `null`.  |
-| `TASK-004` — `calculateRemainingTime()` | DONE        | Returns an explicit warning state with the excess duration.     |
-| `TASK-005` — `calculateClosingTime()`   | DONE        | Returns wrapped time and `dayOffset` after midnight.            |
-| `TASK-006` — `isOneMinuteRemaining()`   | DONE        | True throughout the inclusive 1–60 second warning window.       |
-| `TASK-007` — `isClosingTime()`          | NOT STARTED | Begins when remaining time reaches zero.                        |
+| Task                                    | Status | Notes                                                           |
+| --------------------------------------- | ------ | --------------------------------------------------------------- |
+| `TASK-001` — `convertTimeToSeconds()`   | DONE   | Pure conversion utility and six boundary-focused tests added.   |
+| `TASK-002` — `convertSecondsToTime()`   | DONE   | Pure formatting utility and eight boundary-focused tests added. |
+| `TASK-003` — `validateTime()`           | DONE   | External whitespace is removed; invalid formats return `null`.  |
+| `TASK-004` — `calculateRemainingTime()` | DONE   | Returns an explicit warning state with the excess duration.     |
+| `TASK-005` — `calculateClosingTime()`   | DONE   | Returns wrapped time and `dayOffset` after midnight.            |
+| `TASK-006` — `isOneMinuteRemaining()`   | DONE   | True throughout the inclusive 1–60 second warning window.       |
+| `TASK-007` — `isClosingTime()`          | DONE   | True when remaining time is zero or negative.                   |
 
 ## Environment limitations
 
@@ -53,7 +53,7 @@ Implement and test `TASK-007` using the documented closing boundary.
 ## Verification
 
 - ESLint: passed.
-- Vitest: 7 test files and 53 tests passed.
+- Vitest: 8 test files and 57 tests passed.
 - Coverage: 100% for the currently exercised application and utility modules.
 - Production web build: passed.
 - Capacitor Android synchronization: passed.

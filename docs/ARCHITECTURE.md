@@ -164,6 +164,8 @@ The project-wide minimum remains 90% for statements, branches, functions, and li
   “next day” without inventing a calendar date that was never provided.
 - `TASK-006`: the one-minute warning window is inclusive from 60 through 1 second. Zero belongs to
   the closing state; alert coordination must trigger sound only once when entering this window.
+- `TASK-007`: closing state begins at zero and remains true for negative values so a delayed timer
+  cannot lose the alert after an app resumes.
 
 ## Explicit decisions deferred to their tasks
 

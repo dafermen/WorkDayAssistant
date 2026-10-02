@@ -153,3 +153,13 @@ the entire window makes the business state reliable despite that timing behavior
 Zero is excluded because it represents closing time. Negative values are also excluded defensively.
 The future alert hook must remember whether it has already played the warning so a true predicate on
 multiple timer ticks does not repeat the sound every second.
+
+## Detecting closing time
+
+`isClosingTime()` returns true at zero and for negative remaining values. A timer does not guarantee
+that it will run at precisely the closing instant, especially while a phone suspends an application.
+Accepting negative values ensures the closing alert still appears when execution resumes late.
+
+This predicate intentionally does not play sounds or display UI. It describes domain state; later
+hooks and components decide how to react to that state. Common mistakes include checking only strict
+equality with zero or combining the final-minute and closing states into overlapping conditions.

@@ -24,17 +24,19 @@
   focused tests.
 - Completed `TASK-005` with wrapped clock output, a day offset, and seven focused tests.
 - Completed `TASK-006` with an inclusive final-minute predicate and six boundary tests.
+- Completed `TASK-007` with a zero-or-less closing predicate and four boundary tests.
+- Completed Phase 2 with all seven business-logic tasks implemented and covered.
 - Verified the task with formatting, ESLint, the 90% coverage gate, and the production build.
 
 ## Pending
 
-- Implement `TASK-007` with the documented zero-or-less closing boundary.
+- Begin Phase 3 with `TASK-020`, the reusable accessible `TimeInput` component.
 
 ## Blocked
 
 - Native Android compilation requires Java and the Android SDK, which are not available in the
   current command-line environment.
-- No blocker for `TASK-007`; the closing boundary is documented for implementation.
+- No Phase 2 blockers remain.
 - Later business-logic tasks have additional unanswered behavior questions recorded in
   `ARCHITECTURE.md`.
 
@@ -57,6 +59,8 @@
   `tests/utils/calculateClosingTime.test.ts`.
 - `src/utils/isOneMinuteRemaining.ts`, exports, and
   `tests/utils/isOneMinuteRemaining.test.ts`.
+- `src/utils/isClosingTime.ts`, exports, `tests/utils/isClosingTime.test.ts`, and Phase 2 status
+  documentation.
 
 ## Risks
 
@@ -66,4 +70,4 @@
 
 ## Recommended next task
 
-Begin `TASK-007` to implement the closing-time predicate.
+Begin `TASK-020` to create the reusable accessible time input.

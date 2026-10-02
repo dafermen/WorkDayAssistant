@@ -33,6 +33,8 @@ All notable project changes are documented in this file.
 - Closing-time tests for arithmetic carry and same-day/midnight rollover cases.
 - `isOneMinuteRemaining()` for the inclusive final-minute warning window.
 - Boundary tests above, inside, and after the final-minute window.
+- `isClosingTime()` with zero-or-less semantics for delayed countdown ticks.
+- Phase 2 business logic completed with all seven planned utilities.
 
 ### Verified
 
@@ -57,3 +59,4 @@ All notable project changes are documented in this file.
 - Midnight rollover is represented with `dayOffset`; no calendar date is fabricated from time-only
   input.
 - The final-minute warning is active from 60 through 1 second; zero is reserved for closing state.
+- Closing state remains active for negative values after delayed or suspended timer updates.

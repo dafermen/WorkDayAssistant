@@ -205,4 +205,31 @@ defensive negative values.
 
 **Documentation to update:** Standard session documentation and testing guide.
 
+**Status:** DONE
+
+## TASK-020 — Create reusable `TimeInput`
+
+**Objective:** Create the shared accessible `HH:mm:ss` input used by worked time and final-task start
+time fields.
+
+**Description:** Build a controlled presentation component that receives its label, value, change
+callback, and optional error through props. It must not calculate time or call services.
+
+**Files to modify:** `src/components/TimeInput.tsx`, its component test, component exports, shared
+styles limited to this component, and required session documentation.
+
+**Dependencies:** Completed Phase 2 validation contract and the Phase 1 component boundaries.
+
+**Estimated time:** 45–75 minutes.
+
+**Acceptance criteria:** Accessible label/input association; `HH:mm:ss` guidance; controlled value;
+change callback; accessible error relationship; reusable labels; no direct storage, notification, or
+calculation dependency.
+
+**Definition of Done:** Behavior tests, WHY-focused comments where needed, documentation, formatting,
+lint, coverage, and production build all pass.
+
+**Documentation to update:** `CHANGELOG.md`, `STATUS.md`, `SESSION_HANDOFF.md`,
+`JUNIOR_DEVELOPER_GUIDE.md`, and `TESTING.md`.
+
 **Status:** NOT STARTED

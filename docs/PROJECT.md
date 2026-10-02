@@ -35,7 +35,8 @@ implement business calculations, persistence, alerts, or notifications.
 
 - Phase 0 — Initialization: **DONE**.
 - Phase 1 — Architecture: **DONE**.
-- Phase 2 — Business logic: **IN PROGRESS** (`TASK-001` through `TASK-006` complete).
+- Phase 2 — Business logic: **DONE** (`TASK-001` through `TASK-007`).
+- Phase 3 — UI: **NOT STARTED**.
 
 The approved architecture separates pure calculations, React coordination, presentation, and
-platform services. The next task is `TASK-007`, which identifies the closing state.
+platform services. The next task is `TASK-020`, which creates the reusable accessible time input.
