@@ -35,6 +35,8 @@ All notable project changes are documented in this file.
 - Boundary tests above, inside, and after the final-minute window.
 - `isClosingTime()` with zero-or-less semantics for delayed countdown ticks.
 - Phase 2 business logic completed with all seven planned utilities.
+- Reusable controlled `TimeInput` with accessible label, format guidance, errors, and disabled state.
+- Component behavior tests covering value, changes, error relationships, and disabled behavior.
 
 ### Verified
 

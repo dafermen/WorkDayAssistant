@@ -163,3 +163,18 @@ Accepting negative values ensures the closing alert still appears when execution
 This predicate intentionally does not play sounds or display UI. It describes domain state; later
 hooks and components decide how to react to that state. Common mistakes include checking only strict
 equality with zero or combining the final-minute and closing states into overlapping conditions.
+
+## Building a reusable controlled time input
+
+`TimeInput` receives its value and change callback from a parent. This is called a controlled
+component: the parent remains the source of truth, while the input owns only presentation and DOM
+events.
+
+The label uses `htmlFor` with the input ID, and format/error text is connected through
+`aria-describedby`. This lets assistive technology announce the same context visible on screen.
+`aria-invalid` communicates the error state without relying on color alone.
+
+Validation is deliberately outside the component. Combining `validateTime()` with the input markup
+would make validation timing difficult to change and would prevent the component from being reused
+for both domain fields. Common mistakes include using placeholder text as the only label, hiding the
+format hint when an error appears, or storing a second copy of the value inside the component.

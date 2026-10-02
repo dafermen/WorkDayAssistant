@@ -6,7 +6,7 @@
 
 ## Current phase
 
-**Phase 2 — Business logic: DONE**
+**Phase 3 — UI: IN PROGRESS**
 
 ## Activities
 
@@ -31,7 +31,14 @@
 
 ## Next task
 
-`TASK-020` — create the reusable accessible `TimeInput` component.
+`TASK-021` — create `WorkedTimeInput` using the shared input.
+
+## Phase 3 activities
+
+| Task                           | Status      | Notes                                                        |
+| ------------------------------ | ----------- | ------------------------------------------------------------ |
+| `TASK-020` — `TimeInput`       | DONE        | Controlled, accessible shared time field with error support. |
+| `TASK-021` — `WorkedTimeInput` | NOT STARTED | Recommended next task.                                       |
 
 ## Phase 2 activities
 
@@ -53,7 +60,7 @@
 ## Verification
 
 - ESLint: passed.
-- Vitest: 8 test files and 57 tests passed.
+- Vitest: 9 test files and 61 tests passed.
 - Coverage: 100% for the currently exercised application and utility modules.
 - Production web build: passed.
 - Capacitor Android synchronization: passed.

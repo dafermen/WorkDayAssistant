@@ -41,11 +41,13 @@ All planned Phase 2 tasks are complete.
 
 ## Phase 3 — UI
 
-Status: **NOT STARTED**
+Status: **IN PROGRESS**
 
 Build the input, countdown, result, alert, and theme components in small reusable tasks.
 
-Next task: `TASK-020` — create the reusable accessible `TimeInput` component.
+Completed: `TASK-020` — reusable accessible `TimeInput` component.
+
+Next task: `TASK-021` — create `WorkedTimeInput`.
 
 ## Phase 4 — Persistence
 

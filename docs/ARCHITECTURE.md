@@ -99,7 +99,7 @@ Hooks coordinate behavior; they do not duplicate time formulas that belong in ut
 
 Planned reusable presentation components:
 
-- `TimeInput`: labelled `HH:mm:ss` input with accessible error text.
+- `TimeInput`: implemented controlled `HH:mm:ss` input with accessible guidance and error text.
 - `WorkedTimeInput` and `LastTaskTimeInput`: domain-labelled wrappers around `TimeInput`.
 - `RemainingTimeCard` and `ClosingTimeCard`: result presentation.
 - `Countdown`: live countdown presentation.

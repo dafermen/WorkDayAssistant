@@ -85,3 +85,9 @@ confirm that a timer delayed past zero remains in closing state.
 
 All seven business-logic utilities are covered by boundary-focused unit tests. The project-wide
 coverage gate remains at 90%; the current measured result is 100%.
+
+## TASK-020 coverage
+
+`TimeInput` behavior tests query the field by its accessible label, verify the controlled value and
+change callback, confirm that both hint and error contribute to its accessible description, and
+cover the disabled state. Tests avoid relying on private component structure.

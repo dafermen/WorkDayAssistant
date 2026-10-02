@@ -1,0 +1,50 @@
+.time-input {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.time-input__label {
+  color: #e5edf8;
+  font-weight: 700;
+}
+
+.time-input__control {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid #526784;
+  border-radius: 0.75rem;
+  color: #f8fafc;
+  background: #0d1728;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+}
+
+.time-input__control:focus-visible {
+  border-color: #7dd3fc;
+  outline: 3px solid rgb(125 211 252 / 28%);
+  outline-offset: 2px;
+}
+
+.time-input__control[aria-invalid='true'] {
+  border-color: #fb7185;
+}
+
+.time-input__control:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.time-input__hint,
+.time-input__error {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.time-input__hint {
+  color: #8fa3bf;
+}
+
+.time-input__error {
+  color: #fda4af;
+}

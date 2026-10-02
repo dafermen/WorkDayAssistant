@@ -26,11 +26,12 @@
 - Completed `TASK-006` with an inclusive final-minute predicate and six boundary tests.
 - Completed `TASK-007` with a zero-or-less closing predicate and four boundary tests.
 - Completed Phase 2 with all seven business-logic tasks implemented and covered.
+- Completed `TASK-020` with the reusable accessible `TimeInput` component and four behavior tests.
 - Verified the task with formatting, ESLint, the 90% coverage gate, and the production build.
 
 ## Pending
 
-- Begin Phase 3 with `TASK-020`, the reusable accessible `TimeInput` component.
+- Implement `TASK-021`, the worked-time wrapper around `TimeInput`.
 
 ## Blocked
 
@@ -61,6 +62,8 @@
   `tests/utils/isOneMinuteRemaining.test.ts`.
 - `src/utils/isClosingTime.ts`, exports, `tests/utils/isClosingTime.test.ts`, and Phase 2 status
   documentation.
+- `src/components/TimeInput.tsx`, component exports, `src/styles/time-input.css`, and
+  `tests/components/TimeInput.test.tsx`.
 
 ## Risks
 
@@ -70,4 +73,4 @@
 
 ## Recommended next task
 
-Begin `TASK-020` to create the reusable accessible time input.
+Begin `TASK-021` to create the worked-time input wrapper.
