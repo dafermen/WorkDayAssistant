@@ -97,3 +97,9 @@ cover the disabled state. Tests avoid relying on private component structure.
 `WorkedTimeInput` tests its fixed accessible label and verifies that value, change callbacks, errors,
 and disabled state reach the shared control. These tests focus on the wrapper contract instead of
 repeating every `TimeInput` implementation test.
+
+## TASK-022 coverage
+
+`LastTaskTimeInput` mirrors the wrapper-contract tests for the final-task start label. The tests
+confirm controlled value and callback forwarding plus accessible error and disabled states without
+duplicating the shared component's complete test suite.

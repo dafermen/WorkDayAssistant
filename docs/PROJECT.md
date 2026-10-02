@@ -36,8 +36,7 @@ implement business calculations, persistence, alerts, or notifications.
 - Phase 0 — Initialization: **DONE**.
 - Phase 1 — Architecture: **DONE**.
 - Phase 2 — Business logic: **DONE** (`TASK-001` through `TASK-007`).
-- Phase 3 — UI: **IN PROGRESS** (`TASK-020` and `TASK-021` complete).
+- Phase 3 — UI: **IN PROGRESS** (`TASK-020` through `TASK-022` complete).
 
 The approved architecture separates pure calculations, React coordination, presentation, and
-platform services. The next task is `TASK-022`, which creates the domain-labelled final-task start
-field.
+platform services. The next task is `TASK-023`, which creates the countdown presentation.

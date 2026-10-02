@@ -39,6 +39,8 @@ All notable project changes are documented in this file.
 - Component behavior tests covering value, changes, error relationships, and disabled behavior.
 - `WorkedTimeInput` domain wrapper reusing the shared time-input contract and markup.
 - Wrapper tests covering its fixed label and forwarded value, change, error, and disabled props.
+- `LastTaskTimeInput` domain wrapper reusing the shared input contract and accessible markup.
+- Wrapper tests covering its fixed label and forwarded controlled states.
 
 ### Verified
 

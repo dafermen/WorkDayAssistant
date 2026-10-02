@@ -189,3 +189,8 @@ An alternative is copying all input markup into a second component. That creates
 accessibility or styling defects. Another alternative is configuring the label at every call site,
 which makes inconsistent wording more likely. The wrapper provides consistent domain language while
 retaining the tested shared implementation.
+
+`LastTaskTimeInput` applies the same pattern for the final task's start time. Both wrappers stay
+small on purpose: domain wording belongs in each wrapper, while labels, hints, errors, and interaction
+belong in `TimeInput`. When two domain fields need the same behavior, first improve the shared
+component instead of copying the change into both wrappers.

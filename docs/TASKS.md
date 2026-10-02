@@ -278,4 +278,27 @@ errors, and disabled state without duplicating the shared input markup or valida
 
 **Documentation to update:** Standard session documentation and testing guide.
 
+**Status:** DONE
+
+## TASK-023 — Create `Countdown`
+
+**Objective:** Present the live remaining duration as an accessible `HH:mm:ss` display.
+
+**Description:** Build a reusable presentation component that receives formatted time and an alert
+state through props. It must not own a timer, calculate remaining time, or trigger notifications.
+
+**Files to modify:** One component module, its behavior test, component exports, component-limited
+styles, and required session documentation.
+
+**Dependencies:** Completed Phase 2 formatting and alert-state contracts.
+
+**Estimated time:** 45–75 minutes.
+
+**Acceptance criteria:** Exposes a clear countdown label and value, announces updates appropriately,
+supports normal/final-minute/closing visual states, and contains no timer or service dependency.
+
+**Definition of Done:** Tests, documentation, formatting, lint, coverage, and build all pass.
+
+**Documentation to update:** Standard session documentation and testing guide.
+
 **Status:** NOT STARTED

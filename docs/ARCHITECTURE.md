@@ -101,7 +101,7 @@ Planned reusable presentation components:
 
 - `TimeInput`: implemented controlled `HH:mm:ss` input with accessible guidance and error text.
 - `WorkedTimeInput`: implemented domain-labelled wrapper around `TimeInput`.
-- `LastTaskTimeInput`: planned domain-labelled wrapper around `TimeInput`.
+- `LastTaskTimeInput`: implemented domain-labelled wrapper around `TimeInput`.
 - `RemainingTimeCard` and `ClosingTimeCard`: result presentation.
 - `Countdown`: live countdown presentation.
 - `AlertBanner`: visual warning state.

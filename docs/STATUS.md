@@ -31,7 +31,7 @@
 
 ## Next task
 
-`TASK-022` — create `LastTaskTimeInput` using the shared input.
+`TASK-023` — create the reusable `Countdown` presentation component.
 
 ## Phase 3 activities
 
@@ -39,7 +39,8 @@
 | -------------------------------- | ----------- | ------------------------------------------------------------ |
 | `TASK-020` — `TimeInput`         | DONE        | Controlled, accessible shared time field with error support. |
 | `TASK-021` — `WorkedTimeInput`   | DONE        | Domain-labelled wrapper reusing all shared input behavior.   |
-| `TASK-022` — `LastTaskTimeInput` | NOT STARTED | Recommended next task.                                       |
+| `TASK-022` — `LastTaskTimeInput` | DONE        | Final-task start wrapper reusing shared input behavior.      |
+| `TASK-023` — `Countdown`         | NOT STARTED | Recommended next task.                                       |
 
 ## Phase 2 activities
 
@@ -61,7 +62,7 @@
 ## Verification
 
 - ESLint: passed.
-- Vitest: 10 test files and 64 tests passed.
+- Vitest: 11 test files and 67 tests passed.
 - Coverage: 100% for the currently exercised application and utility modules.
 - Production web build: passed.
 - Capacitor Android synchronization: passed.

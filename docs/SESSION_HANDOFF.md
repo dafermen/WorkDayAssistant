@@ -28,11 +28,12 @@
 - Completed Phase 2 with all seven business-logic tasks implemented and covered.
 - Completed `TASK-020` with the reusable accessible `TimeInput` component and four behavior tests.
 - Completed `TASK-021` with the `WorkedTimeInput` wrapper and three forwarding tests.
+- Completed `TASK-022` with the `LastTaskTimeInput` wrapper and three forwarding tests.
 - Verified the task with formatting, ESLint, the 90% coverage gate, and the production build.
 
 ## Pending
 
-- Implement `TASK-022`, the final-task start wrapper around `TimeInput`.
+- Implement `TASK-023`, the reusable countdown presentation component.
 
 ## Blocked
 
@@ -67,6 +68,8 @@
   `tests/components/TimeInput.test.tsx`.
 - `src/components/WorkedTimeInput.tsx`, component exports, and
   `tests/components/WorkedTimeInput.test.tsx`.
+- `src/components/LastTaskTimeInput.tsx`, component exports, and
+  `tests/components/LastTaskTimeInput.test.tsx`.
 
 ## Risks
 
@@ -76,4 +79,4 @@
 
 ## Recommended next task
 
-Begin `TASK-022` to create the final-task start input wrapper.
+Begin `TASK-023` to create the countdown presentation component.
