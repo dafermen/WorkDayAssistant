@@ -130,3 +130,16 @@ exception; exceeding a work limit is an expected business state, not an unexpect
 
 Common mistakes include duplicating `07:29:45` in several modules, treating the exact limit as
 exceeded, or discarding how far over the limit the user is.
+
+## Calculating a closing time across midnight
+
+`calculateClosingTime()` converts the start clock time to seconds, adds the remaining duration, and
+uses division and remainder by 86,400 seconds. The remainder becomes a valid 24-hour clock value;
+the quotient becomes `dayOffset`.
+
+This design avoids returning `25:15:00`, which is a duration rather than a clock time. It also avoids
+creating a date because the inputs contain no calendar date. The UI can safely show “next day” when
+`dayOffset` is one.
+
+Common mistakes include losing the rollover information after applying modulo, creating dates in the
+device time zone for simple arithmetic, or assuming every result belongs to the same day.

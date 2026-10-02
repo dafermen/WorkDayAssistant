@@ -1,6 +1,7 @@
 export type { DurationSeconds, RawTimeInput, TimeParts, TimeText } from './time';
 export type {
   AlertKind,
+  ClosingTimeResult,
   PersistedWorkdayData,
   RemainingTimeResult,
   TimeValidationCode,

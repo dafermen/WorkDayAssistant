@@ -64,3 +64,9 @@ result so both the warning status and its numeric details are verified.
 
 The exact limit remains `within-limit` with zero seconds remaining. This boundary distinguishes a
 completed valid workday from an exceeded one.
+
+## TASK-005 coverage
+
+`calculateClosingTime()` tests no remaining time, ordinary addition, carries between units, the
+maximum remaining duration, and multiple midnight boundaries. Every assertion checks both the
+wrapped clock text and `dayOffset` so rollover information cannot be lost silently.

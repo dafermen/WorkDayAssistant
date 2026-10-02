@@ -31,8 +31,7 @@
 
 ## Next task
 
-Resolve the `TASK-005` midnight rollover decision, then implement and test
-`calculateClosingTime()`.
+Implement and test `TASK-006` using the documented final-minute window.
 
 ## Phase 2 activities
 
@@ -42,8 +41,9 @@ Resolve the `TASK-005` midnight rollover decision, then implement and test
 | `TASK-002` — `convertSecondsToTime()`   | DONE        | Pure formatting utility and eight boundary-focused tests added. |
 | `TASK-003` — `validateTime()`           | DONE        | External whitespace is removed; invalid formats return `null`.  |
 | `TASK-004` — `calculateRemainingTime()` | DONE        | Returns an explicit warning state with the excess duration.     |
-| `TASK-005` — `calculateClosingTime()`   | BLOCKED     | Requires an explicit midnight rollover decision.                |
-| `TASK-006` and `TASK-007`               | NOT STARTED | Must follow documented dependencies and decisions.              |
+| `TASK-005` — `calculateClosingTime()`   | DONE        | Returns wrapped time and `dayOffset` after midnight.            |
+| `TASK-006` — `isOneMinuteRemaining()`   | NOT STARTED | Use the inclusive 1–60 second warning window.                   |
+| `TASK-007` — `isClosingTime()`          | NOT STARTED | Begins when remaining time reaches zero.                        |
 
 ## Environment limitations
 
@@ -53,7 +53,7 @@ Resolve the `TASK-005` midnight rollover decision, then implement and test
 ## Verification
 
 - ESLint: passed.
-- Vitest: 5 test files and 40 tests passed.
+- Vitest: 6 test files and 47 tests passed.
 - Coverage: 100% for the currently exercised application and utility modules.
 - Production web build: passed.
 - Capacitor Android synchronization: passed.

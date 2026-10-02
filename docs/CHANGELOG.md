@@ -29,6 +29,8 @@ All notable project changes are documented in this file.
 - Maximum-workday constants and `calculateRemainingTime()` with explicit within-limit and over-limit
   result states.
 - Remaining-time tests for zero, partial, exact-limit, and exceeded workdays.
+- `calculateClosingTime()` with wrapped 24-hour output and a separate day offset.
+- Closing-time tests for arithmetic carry and same-day/midnight rollover cases.
 
 ### Verified
 
@@ -50,3 +52,5 @@ All notable project changes are documented in this file.
   invalid so typing mistakes are not silently repaired.
 - Over-limit worked time produces an explicit warning state, zero remaining time, and the excess
   duration; negative countdowns are never exposed.
+- Midnight rollover is represented with `dayOffset`; no calendar date is fabricated from time-only
+  input.

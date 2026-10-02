@@ -31,8 +31,9 @@ Completed: `TASK-003` — normalize and validate `HH:mm:ss` input.
 
 Completed: `TASK-004` — calculate remaining time and signal an exceeded workday.
 
-Next task: resolve the midnight rollover policy, then implement `TASK-005` —
-`calculateClosingTime()`.
+Completed: `TASK-005` — calculate the closing time with midnight rollover metadata.
+
+Next task: implement `TASK-006` — `isOneMinuteRemaining()`.
 
 ## Phase 3 — UI
 

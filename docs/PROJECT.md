@@ -35,8 +35,7 @@ implement business calculations, persistence, alerts, or notifications.
 
 - Phase 0 — Initialization: **DONE**.
 - Phase 1 — Architecture: **DONE**.
-- Phase 2 — Business logic: **IN PROGRESS** (`TASK-001` through `TASK-004` complete).
+- Phase 2 — Business logic: **IN PROGRESS** (`TASK-001` through `TASK-005` complete).
 
 The approved architecture separates pure calculations, React coordination, presentation, and
-platform services. The next task is `TASK-005`, which calculates the closing clock time after its
-midnight rollover behavior is explicitly decided.
+platform services. The next task is `TASK-006`, which identifies the final-minute alert window.

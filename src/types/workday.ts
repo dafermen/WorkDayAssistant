@@ -19,6 +19,11 @@ export interface WorkdayLimitExceeded {
 /** Makes limit warnings explicit instead of encoding them as negative remaining time. */
 export type RemainingTimeResult = WithinWorkdayLimit | WorkdayLimitExceeded;
 
+export interface ClosingTimeResult {
+  readonly time: TimeText;
+  readonly dayOffset: number;
+}
+
 /** Values as entered by the user before validation. */
 export interface WorkdayInput {
   readonly workedTime: RawTimeInput;
@@ -32,6 +37,7 @@ export interface WorkdayCalculation {
   readonly remainingTime: TimeText;
   readonly remainingSeconds: DurationSeconds;
   readonly recommendedClosingTime: TimeText;
+  readonly recommendedClosingDayOffset: number;
 }
 
 export type TimeValidationCode = 'required' | 'format' | 'range';

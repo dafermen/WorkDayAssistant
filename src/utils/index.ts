@@ -1,3 +1,4 @@
+export { calculateClosingTime } from './calculateClosingTime';
 export { calculateRemainingTime } from './calculateRemainingTime';
 export { convertSecondsToTime } from './convertSecondsToTime';
 export { convertTimeToSeconds } from './convertTimeToSeconds';

@@ -157,17 +157,18 @@ behavior; over-limit results contain zero remaining time and the excess duration
 
 **Files to modify:** One utility module, its unit test, exports, and required documentation.
 
-**Dependencies:** `TASK-001`, `TASK-002`, and an explicit midnight rollover decision.
+**Dependencies:** `TASK-001`, `TASK-002`, and the approved `dayOffset` rollover behavior.
 
 **Estimated time:** 45–75 minutes.
 
-**Acceptance criteria:** Covers second/minute/hour carry and the approved midnight behavior.
+**Acceptance criteria:** Covers second/minute/hour carry; returns a wrapped clock time and day offset
+when the result crosses midnight.
 
 **Definition of Done:** Deferred rollover decision is documented; tests and all checks pass.
 
 **Documentation to update:** Architecture decision and standard session documentation.
 
-**Status:** NOT STARTED
+**Status:** DONE
 
 ## TASK-006 — Create `isOneMinuteRemaining()`
 
