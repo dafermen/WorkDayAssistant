@@ -31,7 +31,8 @@
 
 ## Next task
 
-Resolve the `TASK-004` over-limit decision, then implement and test `calculateRemainingTime()`.
+Resolve the `TASK-005` midnight rollover decision, then implement and test
+`calculateClosingTime()`.
 
 ## Phase 2 activities
 
@@ -40,8 +41,9 @@ Resolve the `TASK-004` over-limit decision, then implement and test `calculateRe
 | `TASK-001` — `convertTimeToSeconds()`   | DONE        | Pure conversion utility and six boundary-focused tests added.   |
 | `TASK-002` — `convertSecondsToTime()`   | DONE        | Pure formatting utility and eight boundary-focused tests added. |
 | `TASK-003` — `validateTime()`           | DONE        | External whitespace is removed; invalid formats return `null`.  |
-| `TASK-004` — `calculateRemainingTime()` | BLOCKED     | Requires an explicit over-limit behavior decision.              |
-| `TASK-005` through `TASK-007`           | NOT STARTED | Must follow documented dependencies and decisions.              |
+| `TASK-004` — `calculateRemainingTime()` | DONE        | Returns an explicit warning state with the excess duration.     |
+| `TASK-005` — `calculateClosingTime()`   | BLOCKED     | Requires an explicit midnight rollover decision.                |
+| `TASK-006` and `TASK-007`               | NOT STARTED | Must follow documented dependencies and decisions.              |
 
 ## Environment limitations
 
@@ -51,7 +53,7 @@ Resolve the `TASK-004` over-limit decision, then implement and test `calculateRe
 ## Verification
 
 - ESLint: passed.
-- Vitest: 4 test files and 33 tests passed.
+- Vitest: 5 test files and 40 tests passed.
 - Coverage: 100% for the currently exercised application and utility modules.
 - Production web build: passed.
 - Capacitor Android synchronization: passed.

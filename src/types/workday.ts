@@ -4,6 +4,21 @@ export type WorkdayField = 'workedTime' | 'lastTaskStartTime';
 
 export type AlertKind = 'one-minute-remaining' | 'closing-time';
 
+export interface WithinWorkdayLimit {
+  readonly status: 'within-limit';
+  readonly remainingSeconds: DurationSeconds;
+  readonly exceededBySeconds: 0;
+}
+
+export interface WorkdayLimitExceeded {
+  readonly status: 'over-limit';
+  readonly remainingSeconds: 0;
+  readonly exceededBySeconds: DurationSeconds;
+}
+
+/** Makes limit warnings explicit instead of encoding them as negative remaining time. */
+export type RemainingTimeResult = WithinWorkdayLimit | WorkdayLimitExceeded;
+
 /** Values as entered by the user before validation. */
 export interface WorkdayInput {
   readonly workedTime: RawTimeInput;

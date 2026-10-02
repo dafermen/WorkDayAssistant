@@ -2,11 +2,14 @@ export type { DurationSeconds, RawTimeInput, TimeParts, TimeText } from './time'
 export type {
   AlertKind,
   PersistedWorkdayData,
+  RemainingTimeResult,
   TimeValidationCode,
   TimeValidationIssue,
+  WithinWorkdayLimit,
   WorkdayCalculation,
   WorkdayField,
   WorkdayInput,
+  WorkdayLimitExceeded,
 } from './workday';
 export type {
   AudioAlertService,

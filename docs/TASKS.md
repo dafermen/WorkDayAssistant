@@ -138,18 +138,18 @@ and testing guide.
 **Files to modify:** Maximum-workday constant, one utility module, its unit test, exports, and
 required documentation.
 
-**Dependencies:** `TASK-001`, `TASK-002`, and an explicit over-limit behavior decision.
+**Dependencies:** `TASK-001`, `TASK-002`, and the approved explicit-warning behavior.
 
 **Estimated time:** 45–75 minutes.
 
-**Acceptance criteria:** Covers zero worked time, partial time, exact maximum, and approved
-over-limit behavior.
+**Acceptance criteria:** Covers zero worked time, partial time, exact maximum, and over-limit
+behavior; over-limit results contain zero remaining time and the excess duration for the warning.
 
 **Definition of Done:** Deferred over-limit decision is documented; tests and all checks pass.
 
 **Documentation to update:** Architecture decision and standard session documentation.
 
-**Status:** NOT STARTED
+**Status:** DONE
 
 ## TASK-005 — Create `calculateClosingTime()`
 

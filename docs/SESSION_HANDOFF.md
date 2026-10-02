@@ -20,19 +20,21 @@
   tests.
 - Completed `TASK-003` with normalization of surrounding whitespace and eighteen focused validation
   tests.
+- Completed `TASK-004` with an explicit over-limit result, shared workday constants, and seven
+  focused tests.
 - Verified the task with formatting, ESLint, the 90% coverage gate, and the production build.
 
 ## Pending
 
-- Resolve the documented over-limit policy for `TASK-004`, then implement
-  `calculateRemainingTime()`.
+- Resolve the documented midnight rollover policy for `TASK-005`, then implement
+  `calculateClosingTime()`.
 
 ## Blocked
 
 - Native Android compilation requires Java and the Android SDK, which are not available in the
   current command-line environment.
-- `TASK-004` requires an explicit decision: return zero or a validation error when worked time is
-  greater than `07:29:45`.
+- `TASK-005` requires an explicit decision about closing times that cross midnight and whether the
+  date must be exposed.
 - Later business-logic tasks have additional unanswered behavior questions recorded in
   `ARCHITECTURE.md`.
 
@@ -49,6 +51,8 @@
 - `src/utils/convertSecondsToTime.ts`, `src/utils/index.ts`, and
   `tests/utils/convertSecondsToTime.test.ts`.
 - `src/utils/validateTime.ts`, `src/utils/index.ts`, and `tests/utils/validateTime.test.ts`.
+- `src/utils/calculateRemainingTime.ts`, `src/utils/workdayConstants.ts`, shared result types,
+  exports, and `tests/utils/calculateRemainingTime.test.ts`.
 
 ## Risks
 
@@ -58,4 +62,4 @@
 
 ## Recommended next task
 
-Resolve the over-limit policy, then begin `TASK-004` to implement `calculateRemainingTime()`.
+Resolve the midnight rollover policy, then begin `TASK-005` to implement `calculateClosingTime()`.

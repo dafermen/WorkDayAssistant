@@ -26,6 +26,9 @@ All notable project changes are documented in this file.
 - `validateTime()` now removes surrounding whitespace and returns normalized `HH:mm:ss` text or
   `null`.
 - Validation tests for empty, malformed, internally spaced, and out-of-range values.
+- Maximum-workday constants and `calculateRemainingTime()` with explicit within-limit and over-limit
+  result states.
+- Remaining-time tests for zero, partial, exact-limit, and exceeded workdays.
 
 ### Verified
 
@@ -45,3 +48,5 @@ All notable project changes are documented in this file.
 - React hooks coordinate injected service contracts so integrations can be replaced in tests.
 - Surrounding whitespace is normalized at the time-validation boundary; internal whitespace remains
   invalid so typing mistakes are not silently repaired.
+- Over-limit worked time produces an explicit warning state, zero remaining time, and the excess
+  duration; negative countdowns are never exposed.

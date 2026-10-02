@@ -55,3 +55,12 @@ and out-of-range hour, minute, and second segments.
 
 Returning the expected normalized text is asserted directly. This verifies both validation and the
 user-approved cleanup behavior rather than checking only a boolean result.
+
+## TASK-004 coverage
+
+`calculateRemainingTime()` tests zero and partial workdays, one second before the limit, the exact
+limit, one second above it, and a larger excess. The assertions compare the complete discriminated
+result so both the warning status and its numeric details are verified.
+
+The exact limit remains `within-limit` with zero seconds remaining. This boundary distinguishes a
+completed valid workday from an exceeded one.

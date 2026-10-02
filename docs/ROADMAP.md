@@ -29,8 +29,10 @@ Completed: `TASK-002` — `convertSecondsToTime()`.
 
 Completed: `TASK-003` — normalize and validate `HH:mm:ss` input.
 
-Next task: resolve the over-limit policy, then implement `TASK-004` —
-`calculateRemainingTime()`.
+Completed: `TASK-004` — calculate remaining time and signal an exceeded workday.
+
+Next task: resolve the midnight rollover policy, then implement `TASK-005` —
+`calculateClosingTime()`.
 
 ## Phase 3 — UI
 

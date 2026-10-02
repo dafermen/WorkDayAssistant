@@ -113,3 +113,20 @@ Returning the accepted value keeps the runtime data consistent with the TypeScri
 Internal spaces are rejected because removing characters inside the value could hide a typing error.
 Common mistakes include using a pattern that accepts `99:99:99`, validating before trimming, or
 casting raw user input to `TimeText` without a runtime check.
+
+## Calculating remaining work time
+
+`calculateRemainingTime()` compares worked seconds with the shared maximum of 26,985 seconds
+(`07:29:45`). A value within the limit returns the subtraction result. A value over the limit returns
+zero remaining seconds and a separate `exceededBySeconds` value.
+
+The result uses `status: 'within-limit' | 'over-limit'`. This is called a discriminated union. It
+forces callers to recognize the warning case instead of treating every number as an ordinary
+countdown.
+
+An alternative is returning a negative duration, but negative countdowns are confusing and require
+every component to rediscover why the number is below zero. Another alternative is throwing an
+exception; exceeding a work limit is an expected business state, not an unexpected software failure.
+
+Common mistakes include duplicating `07:29:45` in several modules, treating the exact limit as
+exceeded, or discarding how far over the limit the user is.

@@ -64,7 +64,7 @@ The approved Phase 2 APIs are:
 | `TASK-001` | `convertTimeToSeconds(value: TimeText): DurationSeconds`                      | Convert validated `HH:mm:ss` text to a numeric duration.    |
 | `TASK-002` | `convertSecondsToTime(value: DurationSeconds): TimeText`                      | Format a non-negative duration as `HH:mm:ss`.               |
 | `TASK-003` | `validateTime(value: RawTimeInput): TimeText \| null`                         | Normalize external whitespace and reject invalid time text. |
-| `TASK-004` | `calculateRemainingTime(worked: DurationSeconds): DurationSeconds`            | Compare worked time with the maximum workday.               |
+| `TASK-004` | `calculateRemainingTime(worked: DurationSeconds): RemainingTimeResult`        | Return remaining time or an explicit over-limit warning.    |
 | `TASK-005` | `calculateClosingTime(start: TimeText, remaining: DurationSeconds): TimeText` | Add the remaining duration to the final-task start time.    |
 | `TASK-006` | `isOneMinuteRemaining(remaining: DurationSeconds): boolean`                   | Identify the one-minute alert state.                        |
 | `TASK-007` | `isClosingTime(remaining: DurationSeconds): boolean`                          | Identify the closing alert state.                           |
@@ -158,13 +158,14 @@ The project-wide minimum remains 90% for statements, branches, functions, and li
 - `TASK-003`: surrounding whitespace is removed before validation. Internal whitespace is rejected.
   The function returns the normalized `TimeText` or `null` because a boolean type predicate cannot
   safely expose a transformed string.
+- `TASK-004`: worked time above `07:29:45` returns `over-limit`, zero remaining seconds, and the
+  number of excess seconds. This gives the UI an explicit warning state without a negative countdown.
 
 ## Explicit decisions deferred to their tasks
 
 The master requirements do not define the following behavior. The named task must resolve and
 document the question before implementation; no current code assumes an answer.
 
-- `TASK-004`: whether worked time above `07:29:45` returns zero or a validation error.
 - `TASK-005`: whether a closing time that crosses midnight wraps to the next clock day and whether
   the date must be exposed.
 - `TASK-006`: whether the one-minute alert is true only at exactly 60 seconds or throughout the last
