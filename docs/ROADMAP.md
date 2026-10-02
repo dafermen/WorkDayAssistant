@@ -47,7 +47,9 @@ Build the input, countdown, result, alert, and theme components in small reusabl
 
 Completed: `TASK-020` — reusable accessible `TimeInput` component.
 
-Next task: `TASK-021` — create `WorkedTimeInput`.
+Completed: `TASK-021` — worked-time domain wrapper.
+
+Next task: `TASK-022` — create `LastTaskTimeInput`.
 
 ## Phase 4 — Persistence
 

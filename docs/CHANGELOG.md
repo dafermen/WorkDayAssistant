@@ -37,6 +37,8 @@ All notable project changes are documented in this file.
 - Phase 2 business logic completed with all seven planned utilities.
 - Reusable controlled `TimeInput` with accessible label, format guidance, errors, and disabled state.
 - Component behavior tests covering value, changes, error relationships, and disabled behavior.
+- `WorkedTimeInput` domain wrapper reusing the shared time-input contract and markup.
+- Wrapper tests covering its fixed label and forwarded value, change, error, and disabled props.
 
 ### Verified
 

@@ -178,3 +178,14 @@ Validation is deliberately outside the component. Combining `validateTime()` wit
 would make validation timing difficult to change and would prevent the component from being reused
 for both domain fields. Common mistakes include using placeholder text as the only label, hiding the
 format hint when an error appears, or storing a second copy of the value inside the component.
+
+## Adding domain meaning without duplicating an input
+
+`WorkedTimeInput` is a thin wrapper: it fixes the ID and visible label, then forwards the remaining
+props to `TimeInput`. Its prop type is derived with TypeScript's `Omit`, so callers cannot replace the
+domain label and future shared props remain synchronized automatically.
+
+An alternative is copying all input markup into a second component. That creates two places to fix
+accessibility or styling defects. Another alternative is configuring the label at every call site,
+which makes inconsistent wording more likely. The wrapper provides consistent domain language while
+retaining the tested shared implementation.

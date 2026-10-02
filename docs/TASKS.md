@@ -255,4 +255,27 @@ errors, and disabled state to `TimeInput` without duplicating markup or validati
 
 **Documentation to update:** Standard session documentation and testing guide.
 
+**Status:** DONE
+
+## TASK-022 — Create `LastTaskTimeInput`
+
+**Objective:** Create the domain-labelled final-task start field using the shared `TimeInput`.
+
+**Description:** Add a thin reusable wrapper that fixes the correct label and forwards value,
+change, error, and disabled props without adding business calculations.
+
+**Files to modify:** One component module, its behavior test, component exports, and required session
+documentation.
+
+**Dependencies:** `TASK-020`.
+
+**Estimated time:** 30–45 minutes.
+
+**Acceptance criteria:** Renders the final-task start label and forwards controlled input behavior,
+errors, and disabled state without duplicating the shared input markup or validation.
+
+**Definition of Done:** Tests, documentation, formatting, lint, coverage, and build all pass.
+
+**Documentation to update:** Standard session documentation and testing guide.
+
 **Status:** NOT STARTED

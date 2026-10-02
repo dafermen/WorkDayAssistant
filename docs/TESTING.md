@@ -91,3 +91,9 @@ coverage gate remains at 90%; the current measured result is 100%.
 `TimeInput` behavior tests query the field by its accessible label, verify the controlled value and
 change callback, confirm that both hint and error contribute to its accessible description, and
 cover the disabled state. Tests avoid relying on private component structure.
+
+## TASK-021 coverage
+
+`WorkedTimeInput` tests its fixed accessible label and verifies that value, change callbacks, errors,
+and disabled state reach the shared control. These tests focus on the wrapper contract instead of
+repeating every `TimeInput` implementation test.
