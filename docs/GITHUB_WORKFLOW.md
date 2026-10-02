@@ -1,5 +1,9 @@
 # GitHub Workflow
 
+## Repository
+
+<https://github.com/dafermen/WorkDayAssistant>
+
 ## Branches
 
 Create a short-lived branch for one task. Suggested format: `task/phase0-001-initialize`.
@@ -21,5 +25,17 @@ Use Conventional Commits and keep one logical change per commit. Examples:
 
 ## Repository protection recommendation
 
-After the remote repository exists, require successful lint, test, and build checks before merging
-to the default branch.
+Require the `validate` CI job before merging to `main`. Enable branch protection, private
+vulnerability reporting, secret scanning when available, and Dependabot security updates.
+
+## Continuous integration
+
+`.github/workflows/ci.yml` installs the lockfile with Node.js 24 and runs formatting, ESLint,
+coverage tests, and the production build for pushes and pull requests targeting `main`.
+
+The workflow uses read-only repository permissions. No application secrets are required.
+
+## Dependency maintenance
+
+Dependabot checks npm packages and GitHub Actions weekly. Security fixes should remain small,
+preserve the lockfile, and pass the complete CI workflow before merging.

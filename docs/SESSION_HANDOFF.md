@@ -29,11 +29,15 @@
 - Completed `TASK-020` with the reusable accessible `TimeInput` component and four behavior tests.
 - Completed `TASK-021` with the `WorkedTimeInput` wrapper and three forwarding tests.
 - Completed `TASK-022` with the `LastTaskTimeInput` wrapper and three forwarding tests.
+- Prepared stable development milestone `v0.1.0` for the initial GitHub publication.
+- Updated stable dependencies, added CI/Dependabot/security policy, and completed secret scans.
+- Updated GitHub README and captured the actual current application build.
 - Verified the task with formatting, ESLint, the 90% coverage gate, and the production build.
 
 ## Pending
 
 - Implement `TASK-023`, the reusable countdown presentation component.
+- Enable branch protection, secret scanning, and private vulnerability reporting in GitHub settings.
 
 ## Blocked
 
@@ -75,7 +79,7 @@
 
 - Native Android build compatibility cannot be confirmed until the Android toolchain is installed.
 - The development-only Capacitor CLI dependency tree reports a moderate `uuid` advisory. Production
-  dependencies are unaffected, and the available npm fix requires a forced breaking change.
+  dependencies are unaffected, and the available npm fix requires a forced incompatible change.
 
 ## Recommended next task
 

@@ -6,7 +6,16 @@ coverage/
 .vscode/
 *.local
 *.log
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.jks
+*.keystore
+google-services.json
+secrets/
 android/.gradle/
 android/local.properties
 android/app/build/
-

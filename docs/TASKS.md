@@ -302,3 +302,29 @@ supports normal/final-minute/closing visual states, and contains no timer or ser
 **Documentation to update:** Standard session documentation and testing guide.
 
 **Status:** NOT STARTED
+
+## RELEASE-001 — Publish stable GitHub baseline
+
+**Objective:** Safely publish the verified `v0.1.0` development milestone to GitHub.
+
+**Description:** Audit dependencies and secrets, align stable tool versions, add repository security
+and CI configuration, update GitHub documentation with a real screenshot, and push without rewriting
+remote history.
+
+**Files to modify:** Dependency manifests, GitHub configuration, root security/readme files, current
+milestone screen/test, screenshot, and required project documentation.
+
+**Dependencies:** Phase 2 complete and a compatible empty GitHub repository.
+
+**Estimated time:** 60–120 minutes.
+
+**Acceptance criteria:** Production audit clean; residual development advisories documented; secret
+scans clean; format, lint, tests, coverage, build, and Capacitor sync pass; screenshot is generated
+from the real build; CI and Dependabot configured; remote push and tag succeed.
+
+**Definition of Done:** `main` and annotated `v0.1.0` tag exist remotely with a clean local worktree.
+
+**Documentation to update:** README, security policy/audit, GitHub workflow, changelog, status, and
+session handoff.
+
+**Status:** IN PROGRESS

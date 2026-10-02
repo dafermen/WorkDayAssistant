@@ -41,10 +41,19 @@ All notable project changes are documented in this file.
 - Wrapper tests covering its fixed label and forwarded value, change, error, and disabled props.
 - `LastTaskTimeInput` domain wrapper reusing the shared input contract and accessible markup.
 - Wrapper tests covering its fixed label and forwarded controlled states.
+- GitHub Actions CI, Dependabot configuration, security policy, security audit, and updated README.
+- Real screenshot of the current application milestone for GitHub documentation.
 
 ### Verified
 
 - ESLint, formatting, unit tests, 90% coverage thresholds, production build, and Capacitor sync.
+- Secret-pattern scans for tracked files and local Git history before initial GitHub publication.
+
+### Changed
+
+- Compatible dependency updates applied, including Capacitor `8.5.2`, Vitest `5.0.3`, React
+  `19.3.0`, and Vite `8.3.2`; the TypeScript 7 major migration is documented for separate review.
+- Development screen updated to identify the stable `v0.1.0` Phase 3 baseline.
 
 ### Known issues
 

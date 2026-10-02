@@ -67,3 +67,7 @@
 - Production web build: passed.
 - Capacitor Android synchronization: passed.
 - Production dependency audit: 0 vulnerabilities.
+- Development dependency audit: 3 accepted moderate advisories in a Capacitor CLI transitive
+  dependency; documented in `SECURITY_AUDIT.md`.
+- Tracked-file and Git-history secret scans: no detected credentials or private keys.
+- GitHub publication baseline: CI, Dependabot, security policy, and README prepared.

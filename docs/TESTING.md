@@ -15,6 +15,9 @@ npm run test:watch
 npm run test:coverage
 ```
 
+GitHub Actions also runs formatting, lint, coverage, and production build checks on `main` and pull
+requests.
+
 ## Testing principles
 
 - Test public behavior rather than internal implementation details.

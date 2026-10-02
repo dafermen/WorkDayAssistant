@@ -25,3 +25,9 @@ a supported Java Development Kit, Android Studio, and the Android SDK.
 - Run lint, tests, coverage, and the production build.
 - Synchronize Capacitor after every web build used by a native release.
 - Never commit signing secrets or machine-specific `android/local.properties`.
+
+## GitHub milestone publication
+
+Before pushing a milestone, verify the remote has no conflicting history, scan tracked files and Git
+history for secret patterns, run the complete validation suite, update the README screenshot, and
+create an annotated semantic-version tag.

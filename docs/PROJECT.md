@@ -40,3 +40,8 @@ implement business calculations, persistence, alerts, or notifications.
 
 The approved architecture separates pure calculations, React coordination, presentation, and
 platform services. The next task is `TASK-023`, which creates the countdown presentation.
+
+## Published milestone
+
+`v0.1.0` is the stable development baseline for the completed architecture and business-logic work
+plus the first accessible UI inputs. It is not yet a production-complete end-user application.
