@@ -29,3 +29,7 @@ Start with the presentation and current state, then read the user guide to try t
 Keep current state, change history and decisions separate. Existing dated test results remain historical evidence. Adding this map does not rerun every documented command or complete pending product acceptance. Record actual checks, their environment and unresolved limits before publication.
 
 Update the source guide whenever commands, configuration, behavior, permissions or deployment change. Keep existing links and portal routes stable. Use real screenshots with synthetic data; never publish env values, access keys, user data or operational logs. A local commit, a remote commit and a deployed artifact are separate states.
+
+## Web reading
+
+[Build and maintain the documentation reader](../documentation-web/README.md).

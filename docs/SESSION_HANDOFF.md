@@ -1,5 +1,9 @@
 # Session Handoff
 
+## 2026-10-03 — Documentation navigation (local)
+
+Added an allowlisted static documentation reader and Home link. InnovaLogic colors, search, outline, previous/next, copy and image enlargement; generated during root build/dev. Lint, 67 tests and production build pass; desktop/mobile reader verification passes. See [reader maintenance](../documentation-web/README.md). No deployment or Android synchronization was performed for this update.
+
 ## Completed
 
 - Created the Phase 0 React and strict TypeScript foundation.

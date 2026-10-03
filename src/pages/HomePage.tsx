@@ -18,6 +18,7 @@ export function HomePage() {
             <dd>Stable baseline v0.1.0</dd>
           </div>
         </dl>
+        <a href="./docs/index.html">Documentation</a>
       </section>
     </main>
   );

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Documentación</title>
+    <link rel="stylesheet" href="brand.css" />
+    <link rel="stylesheet" href="portal.css" />
+    <script src="content.js" defer></script>
+    <script src="vendor/markdown-it.min.js" defer></script>
+    <script src="reading-tools.js" defer></script>
+    <script src="portal.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#article">Saltar al contenido</a>
+    <header>
+      <button id="menu" aria-controls="sidebar" aria-expanded="false">☰ Menú</button
+      ><a id="home" href="#">Documentación</a
+      ><label
+        ><span id="search-label">Buscar</span
+        ><input id="search" type="search" autocomplete="off" /></label
+      ><button id="theme" aria-pressed="false">Tema oscuro</button
+      ><a id="app" href="/">Aplicación ↗</a>
+    </header>
+    <button id="overlay" hidden aria-label="Cerrar navegación"></button>
+    <div class="layout">
+      <aside id="sidebar">
+        <button id="close" aria-label="Cerrar navegación">Cerrar ×</button>
+        <nav id="catalog" aria-label="Documentos"></nav>
+        <p id="results" role="status"></p>
+      </aside>
+      <main id="main">
+        <nav id="paths" class="paths" aria-label="Recorridos de lectura"></nav>
+        <p id="breadcrumb"></p>
+        <details id="mobile-toc">
+          <summary>En esta página</summary>
+          <nav></nav>
+        </details>
+        <article id="article" tabindex="-1"></article>
+        <nav id="pager" aria-label="Documentos anterior y siguiente"></nav>
+      </main>
+      <aside id="outline">
+        <strong>En esta página</strong>
+        <nav></nav>
+      </aside>
+    </div>
+    <footer>InnovaLogic · Documentation v1 <span id="revision"></span></footer>
+  </body>
+</html>

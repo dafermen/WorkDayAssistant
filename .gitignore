@@ -19,3 +19,6 @@ secrets/
 android/.gradle/
 android/local.properties
 android/app/build/
+
+# Generated from documentation-web/manifest.json during build
+/public/docs/
