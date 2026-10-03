@@ -6,14 +6,14 @@ describe('MaximumWorkdayInput', () => {
   it('renders the controlled value with the maximum-workday label', () => {
     render(<MaximumWorkdayInput value="07:29:30" onChange={() => {}} />);
 
-    expect(screen.getByRole('textbox', { name: 'Jornada máxima' })).toHaveValue('07:29:30');
+    expect(screen.getByRole('textbox', { name: 'Maximum workday' })).toHaveValue('07:29:30');
   });
 
   it('forwards edited text to the change callback', () => {
     const onChange = vi.fn();
     render(<MaximumWorkdayInput value="07:29:30" onChange={onChange} />);
 
-    fireEvent.change(screen.getByRole('textbox', { name: 'Jornada máxima' }), {
+    fireEvent.change(screen.getByRole('textbox', { name: 'Maximum workday' }), {
       target: { value: '08:00:00' },
     });
 
@@ -30,7 +30,7 @@ describe('MaximumWorkdayInput', () => {
       />,
     );
 
-    const input = screen.getByRole('textbox', { name: 'Jornada máxima' });
+    const input = screen.getByRole('textbox', { name: 'Maximum workday' });
 
     expect(input).toBeDisabled();
     expect(input).toHaveAttribute('aria-invalid', 'true');

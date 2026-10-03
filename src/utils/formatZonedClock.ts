@@ -11,16 +11,16 @@ function pad(value: number) {
   return String(value).padStart(2, '0');
 }
 
-export function formatZonedClock(date: Date, timeZone: string): ZonedClock {
+export function formatZonedClock(date: Date, timeZone: string, locale = 'en-US'): ZonedClock {
   const parts = getZonedDateTime(date, timeZone);
-  const zoneParts = new Intl.DateTimeFormat('es-US', {
+  const zoneParts = new Intl.DateTimeFormat(locale, {
     timeZone,
     timeZoneName: 'long',
   }).formatToParts(date);
 
   return {
     time: `${pad(parts.hours)}:${pad(parts.minutes)}:${pad(parts.seconds)}` as TimeText,
-    dateLabel: new Intl.DateTimeFormat('es-US', {
+    dateLabel: new Intl.DateTimeFormat(locale, {
       timeZone,
       weekday: 'long',
       year: 'numeric',

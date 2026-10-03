@@ -1,4 +1,5 @@
 import type { ChangeEvent, FocusEvent } from 'react';
+import { useLanguage } from '../i18n';
 import { completeTimeInput, formatTimeInput } from '../utils';
 import '../styles/time-input.css';
 
@@ -31,6 +32,7 @@ export function TimeInput({
   error,
   disabled = false,
 }: TimeInputProps) {
+  const { t } = useLanguage();
   const hintId = `${id}-hint`;
   const descriptionId = `${id}-description`;
   const errorId = `${id}-error`;
@@ -88,7 +90,7 @@ export function TimeInput({
         aria-invalid={Boolean(error)}
       />
       <p id={hintId} className="time-input__hint">
-        Escribe 4 o 6 dígitos; agregamos los dos puntos. Ejemplo: 1430 → 14:30:00.
+        {t('field.hint')}
       </p>
       {error ? (
         <p id={errorId} className="time-input__error" role="alert">

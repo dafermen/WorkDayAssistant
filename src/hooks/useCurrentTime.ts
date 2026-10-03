@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { formatZonedClock } from '../utils';
 
-export function useCurrentTime(timeZone: string) {
+export function useCurrentTime(timeZone: string, locale = 'en-US') {
   const [now, setNow] = useState(() => Date.now());
 
   useEffect(() => {
@@ -23,5 +23,5 @@ export function useCurrentTime(timeZone: string) {
     };
   }, [timeZone]);
 
-  return useMemo(() => formatZonedClock(new Date(now), timeZone), [now, timeZone]);
+  return useMemo(() => formatZonedClock(new Date(now), timeZone, locale), [locale, now, timeZone]);
 }

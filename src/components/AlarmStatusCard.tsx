@@ -1,3 +1,4 @@
+import { useLanguage } from '../i18n';
 import type { TimeText } from '../types';
 
 export type AlarmStatus = 'inactive' | 'active' | 'ringing';
@@ -8,13 +9,14 @@ export interface AlarmStatusCardProps {
   readonly timeZoneLabel?: string;
 }
 
-const statusLabels: Record<AlarmStatus, string> = {
-  inactive: 'Alarma sin programar',
-  active: 'Alarma activada',
-  ringing: 'Alarma sonando',
-};
-
 export function AlarmStatusCard({ status, closingTime, timeZoneLabel }: AlarmStatusCardProps) {
+  const { t } = useLanguage();
+  const statusLabels: Record<AlarmStatus, string> = {
+    inactive: t('alarm.inactive.title'),
+    active: t('alarm.active.title'),
+    ringing: t('alarm.ringing.title'),
+  };
+
   return (
     <section
       className={`alarm-status alarm-status--${status}`}
@@ -23,14 +25,16 @@ export function AlarmStatusCard({ status, closingTime, timeZoneLabel }: AlarmSta
       <div className="alarm-status__indicator" aria-hidden="true" />
       <div>
         <h2 id="alarm-status-title">{statusLabels[status]}</h2>
-        {status === 'inactive' ? <p>Completa los datos y usa “Calcular e iniciar”.</p> : null}
+        {status === 'inactive' ? <p>{t('alarm.inactive.message')}</p> : null}
         {status === 'active' && closingTime ? (
           <p>
-            Programada para las <strong>{closingTime}</strong>
-            {timeZoneLabel ? ` · ${timeZoneLabel}` : ''}.
+            {t('alarm.active.message', {
+              time: closingTime,
+              zone: timeZoneLabel ? ` · ${timeZoneLabel}` : '',
+            })}
           </p>
         ) : null}
-        {status === 'ringing' ? <p role="alert">Llegó la hora de cerrar tu turno.</p> : null}
+        {status === 'ringing' ? <p role="alert">{t('alarm.ringing.message')}</p> : null}
       </div>
     </section>
   );

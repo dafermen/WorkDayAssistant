@@ -7,12 +7,53 @@
 .calculator-form__fields,
 .calculation-results {
   display: grid;
+}
+
+.calculator-form__fields {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(5, auto);
+  column-gap: 1rem;
+  row-gap: 0.45rem;
+  align-items: start;
+}
+
+.calculator-form__fields > .time-input {
+  grid-row: 1 / span 5;
+  grid-template-rows: subgrid;
+}
+
+.calculation-results {
   grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
   gap: 1rem;
 }
 
+.calculator-card__toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.75rem;
+}
+
+.language-select {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: #b9c7dc;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.language-select select {
+  min-height: 2.75rem;
+  padding: 0.45rem 2rem 0.45rem 0.65rem;
+  border: 1px solid #405676;
+  border-radius: 0.6rem;
+  color: #f8fafc;
+  background: #111f34;
+}
+
 .calculator-form__button {
   justify-self: start;
+  min-height: 3rem;
   padding: 0.85rem 1.25rem;
   border: 0;
   border-radius: 0.75rem;
@@ -28,6 +69,7 @@
 
 .calculator-form__button:focus-visible,
 .secondary-button:focus-visible,
+.language-select select:focus-visible,
 .time-zone-select select:focus-visible,
 .calculator-card__documentation:focus-visible {
   outline: 3px solid rgb(125 211 252 / 38%);
@@ -84,6 +126,7 @@
 
 .time-zone-select select {
   width: 100%;
+  min-height: 3rem;
   padding: 0.7rem 2.25rem 0.7rem 0.75rem;
   border: 1px solid #405676;
   border-radius: 0.65rem;
@@ -108,6 +151,7 @@
 
 .secondary-button {
   flex: none;
+  min-height: 3rem;
   padding: 0.8rem 1.15rem;
   border: 1px solid #607794;
   border-radius: 0.75rem;
@@ -282,20 +326,47 @@
 }
 
 .calculator-card__documentation {
-  display: inline-block;
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
   margin-top: 1.75rem;
+  padding: 0.65rem 0;
   color: #7dd3fc;
   font-weight: 700;
 }
 
 @media (max-width: 36rem) {
   .calculator-card {
-    padding: 1.25rem;
+    padding: 1.1rem;
+  }
+
+  .calculator-card__toolbar {
+    justify-content: stretch;
+    margin-bottom: 0.65rem;
+  }
+
+  .language-select {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .language-select select {
+    min-width: 8rem;
   }
 
   .calculator-form__fields,
   .calculation-results {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .calculator-form__fields {
+    grid-template-rows: none;
+    gap: 1.1rem;
+  }
+
+  .calculator-form__fields > .time-input {
+    grid-row: auto;
+    grid-template-rows: none;
   }
 
   .calculator-form__button {
@@ -306,6 +377,16 @@
   .countdown-controls {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .current-time {
+    gap: 1rem;
+    margin-top: 1.15rem;
+    padding: 1rem;
+  }
+
+  .current-time__value {
+    font-size: clamp(2rem, 12vw, 2.5rem);
   }
 
   .time-zone-select {
@@ -323,5 +404,41 @@
 
   .time-input__heading {
     align-items: flex-start;
+  }
+
+  .alarm-status,
+  .calculation-results,
+  .countdown {
+    margin-top: 1.15rem;
+  }
+
+  .result-card,
+  .countdown {
+    padding: 1rem;
+  }
+
+  .calculator-card__documentation {
+    margin-top: 1.25rem;
+  }
+}
+
+@media (max-width: 24rem) {
+  .calculator-card {
+    padding: 0.9rem;
+  }
+
+  .language-select {
+    display: grid;
+  }
+
+  .language-select select {
+    width: 100%;
+  }
+
+  .current-time,
+  .alarm-status,
+  .result-card,
+  .countdown {
+    border-radius: 0.75rem;
   }
 }

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { translate, type Language, type TranslationKey } from '../i18n';
 import type { TimeText, WorkdayCalculation, WorkdayField } from '../types';
 import {
   calculateClosingTime,
@@ -27,13 +28,14 @@ export interface UseWorkdayCalculatorResult {
   readonly setWorkedTime: (value: string) => void;
   readonly setLastTaskStartTime: (value: string) => void;
   readonly calculate: () => WorkdayCalculation | null;
+  readonly clearErrors: () => void;
   readonly reset: () => void;
 }
 
-function validationMessage(value: string, fieldName: string): string {
-  return value.trim() === ''
-    ? `Ingresa ${fieldName}.`
-    : `Usa HH:mm:ss para ${fieldName}; horas 00–23 y minutos/segundos 00–59.`;
+function validationMessage(language: Language, value: string, fieldKey: TranslationKey): string {
+  return translate(language, value.trim() === '' ? 'validation.required' : 'validation.invalid', {
+    field: translate(language, fieldKey),
+  });
 }
 
 /**
@@ -42,7 +44,7 @@ function validationMessage(value: string, fieldName: string): string {
  * The hook clears derived output whenever an input changes so the screen never presents a result
  * calculated from values that are no longer visible in the form.
  */
-export function useWorkdayCalculator(): UseWorkdayCalculatorResult {
+export function useWorkdayCalculator(language: Language = 'en'): UseWorkdayCalculatorResult {
   const [maximumWorkday, setMaximumWorkdayValue] = useState<string>(MAX_WORKDAY_TIME);
   const [workedTime, setWorkedTimeValue] = useState('');
   const [lastTaskStartTime, setLastTaskStartTimeValue] = useState('');
@@ -88,17 +90,18 @@ export function useWorkdayCalculator(): UseWorkdayCalculatorResult {
     const nextErrors: WorkdayValidationErrors = {};
 
     if (!validatedMaximumWorkday) {
-      nextErrors.maximumWorkday = validationMessage(maximumWorkday, 'la jornada máxima');
+      nextErrors.maximumWorkday = validationMessage(language, maximumWorkday, 'validation.maximum');
     }
 
     if (!validatedWorkedTime) {
-      nextErrors.workedTime = validationMessage(workedTime, 'el tiempo trabajado');
+      nextErrors.workedTime = validationMessage(language, workedTime, 'validation.worked');
     }
 
     if (!validatedLastTaskStartTime) {
       nextErrors.lastTaskStartTime = validationMessage(
+        language,
         lastTaskStartTime,
-        'la hora de inicio de la última tarea',
+        'validation.lastTask',
       );
     }
 
@@ -151,6 +154,10 @@ export function useWorkdayCalculator(): UseWorkdayCalculatorResult {
     setOverLimit(null);
   }
 
+  function clearErrors() {
+    setErrors({});
+  }
+
   return {
     maximumWorkday,
     workedTime,
@@ -162,6 +169,7 @@ export function useWorkdayCalculator(): UseWorkdayCalculatorResult {
     setWorkedTime,
     setLastTaskStartTime,
     calculate,
+    clearErrors,
     reset,
   };
 }

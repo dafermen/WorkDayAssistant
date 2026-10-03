@@ -12,12 +12,14 @@ describe('Countdown', () => {
   it('shows the final-minute warning', () => {
     render(<Countdown time="00:00:45" state="final-minute" />);
 
-    expect(screen.getByText('Menos de un minuto para cerrar el turno.')).toBeInTheDocument();
+    expect(
+      screen.getByText('Less than one minute remains before closing your workday.'),
+    ).toBeInTheDocument();
   });
 
   it('announces the closing state', () => {
     render(<Countdown time="00:00:00" state="complete" />);
 
-    expect(screen.getByRole('alert')).toHaveTextContent('Es hora de cerrar el turno.');
+    expect(screen.getByRole('alert')).toHaveTextContent('It is time to close your workday.');
   });
 });

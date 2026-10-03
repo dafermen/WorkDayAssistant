@@ -3,8 +3,8 @@ import { CurrentTimePanel } from '../../src/components';
 
 const clock = {
   time: '12:04:05' as const,
-  dateLabel: 'sábado, 3 de octubre de 2026',
-  zoneLabel: 'hora de verano oriental',
+  dateLabel: 'Saturday, October 3, 2026',
+  zoneLabel: 'Eastern Daylight Time',
 };
 
 describe('CurrentTimePanel', () => {
@@ -25,7 +25,7 @@ describe('CurrentTimePanel', () => {
 
     expect(screen.getByText('12:04:05')).toBeInTheDocument();
     expect(screen.getByText(clock.dateLabel)).toBeInTheDocument();
-    fireEvent.change(screen.getByRole('combobox', { name: 'Zona horaria' }), {
+    fireEvent.change(screen.getByRole('combobox', { name: 'Time zone' }), {
       target: { value: 'UTC' },
     });
     expect(onTimeZoneChange).toHaveBeenCalledWith('UTC');

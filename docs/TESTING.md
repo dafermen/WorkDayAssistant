@@ -18,6 +18,15 @@ npm run test:coverage
 GitHub Actions also runs formatting, lint, coverage, and production build checks on `main` and pull
 requests.
 
+## TASK-029 phone layout validation
+
+The real application was reviewed at a 500-pixel-wide phone viewport after the responsive changes.
+The language and time-zone selectors, all three time inputs, primary calculation action, alarm
+status, quick actions, and documentation link remain within one readable column without horizontal
+overflow. Interactive controls use mobile touch sizing, and time inputs retain a 16-pixel font to
+avoid automatic form zoom on iPhone. The Android web assets were synchronized after the production
+build.
+
 ## Testing principles
 
 - Test public behavior rather than internal implementation details.
@@ -135,5 +144,13 @@ Tests cover digit filtering, automatic separators, four-digit zero-second comple
 field explanations/actions, current-time insertion, one-step calculation and countdown start,
 inactive/active/ringing alarm confirmation, alarm testing, and new-workday reset.
 
-The completed suite contains 122 tests across 21 files. Coverage is 96.95% statements, 95% branches,
-97.56% functions, and 96.87% lines, above the 90% project gate.
+## TASK-028 coverage
+
+The application test verifies that English is selected initially, the document language is `en`,
+and all accessible field names use English. It then switches to Spanish and confirms the selector,
+document language, and calculator labels update without losing the default maximum-workday value.
+Existing component and integration tests now use the default English copy, while localized clock
+formatting remains covered independently.
+
+The completed suite contains 123 tests across 21 files. Coverage is 97.28% statements, 94.44%
+branches, 96.84% functions, and 97.21% lines, above the 90% project gate.

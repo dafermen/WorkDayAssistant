@@ -15,6 +15,17 @@ describe('formatZonedClock', () => {
     expect(clock.time).toBe('09:04:05');
   });
 
+  it('localizes the visible date when Spanish is selected', () => {
+    const clock = formatZonedClock(
+      new Date('2026-10-03T16:04:05.000Z'),
+      'America/New_York',
+      'es-US',
+    );
+
+    expect(clock.dateLabel).toContain('octubre');
+    expect(clock.zoneLabel).toBeTruthy();
+  });
+
   it('reports an invalid IANA time zone', () => {
     expect(() => formatZonedClock(new Date(), 'Invalid/Zone')).toThrow();
   });
