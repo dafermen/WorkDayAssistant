@@ -1,5 +1,20 @@
 # Session Handoff
 
+## 2026-10-03 — v0.2.0 test-server delivery
+
+The browser workflow from source `7da88e1b7379427ef057c8b71e106987583f0c7a` is now deployed at
+<https://workdayassistant.innovalogic.tech/>; the documentation reader remains at `/docs/`.
+Formatting, lint, 122 tests, the 90% coverage gate, production build, and production dependency
+audit passed (zero production vulnerabilities). Chrome verification at 1440 and 390 pixels passed
+numeric input, current-time insertion, calculation, final-minute/countdown completion, alarm
+activation/stop/test, over-limit handling, midnight rollover, reset, and documentation navigation.
+The browser tests verify Web Audio behavior; physical speaker audibility and native/background
+notification delivery are not certified by this web deployment.
+
+Only static web files were published, using an atomic release switch with the previous version
+retained for rollback. HTTPS, security headers, private-file rejection, and the Nginx configuration
+were preserved. GitHub Pages remains available separately; it does not update this VPS.
+
 ## 2026-10-03 — TASK-027 streamlined workflow and v0.2.0
 
 Implemented separator-free numeric time entry, four-digit completion, **Usar hora actual**, one-step
