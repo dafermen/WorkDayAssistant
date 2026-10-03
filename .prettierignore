@@ -4,3 +4,7 @@ coverage
 android
 package-lock.json
 
+
+# Generated documentation and licensed renderer
+public/docs
+documentation-web/vendor
