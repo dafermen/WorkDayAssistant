@@ -398,6 +398,44 @@ GitHub Pages workflow.
 
 **Status:** DONE
 
+## TASK-028 — Add bilingual UI and align calculator fields
+
+**Objective:** Make the complete daily workflow available in English and Spanish while correcting
+the vertical alignment of the final-task field.
+
+**Description:** Add a typed localization layer with English as the initial language, expose an
+accessible language selector, localize the clock and all calculator states, and share the desktop
+form's internal grid rows so wrapped content cannot push one input below the others.
+
+**Acceptance criteria:** The application opens in English; the selector changes all visible and
+accessible UI text to Spanish; dates and time-zone names follow the selected locale; values remain
+unchanged while switching; the three desktop inputs align; the stacked mobile layout remains
+readable; tests cover the default and alternate languages.
+
+**Definition of Done:** Formatting, ESLint, tests, 90% coverage gate, production build,
+desktop/mobile visual review, updated real screenshot, and required documentation pass.
+
+**Status:** DONE
+
+## TASK-029 — Optimize the primary workflow for phones
+
+**Objective:** Make the complete calculator comfortable and reliable to operate on a narrow phone
+screen, its main usage environment.
+
+**Description:** Add viewport cutout support, safe-area-aware shell spacing, horizontal-overflow
+protection, touch-friendly control heights, iPhone-safe input text sizing, full-width mobile actions,
+and compact single-column spacing. Preserve the aligned desktop layout and all bilingual behavior.
+
+**Acceptance criteria:** The complete initial workflow is readable in one column at 500 pixels;
+selectors, inputs, and actions are easy to touch; typing does not trigger iPhone form zoom; device
+notches and home indicators do not cover content; no horizontal page scroll is introduced.
+
+**Definition of Done:** Formatting, ESLint, 123 tests, the 90% coverage gate, production build,
+real mobile screenshot, responsive visual review, Capacitor synchronization, and required
+documentation pass.
+
+**Status:** DONE
+
 ## RELEASE-001 — Publish stable GitHub baseline
 
 **Objective:** Safely publish the verified `v0.1.0` development milestone to GitHub.

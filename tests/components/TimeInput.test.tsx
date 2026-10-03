@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 import { TimeInput } from '../../src/components';
 
-const inputHint = 'Escribe 4 o 6 dígitos; agregamos los dos puntos. Ejemplo: 1430 → 14:30:00.';
+const inputHint = 'Enter 4 or 6 digits; colons are added automatically. Example: 1430 → 14:30:00.';
 
 describe('TimeInput', () => {
   it('associates a reusable label and format guidance with the input', () => {

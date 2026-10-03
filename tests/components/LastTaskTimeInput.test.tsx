@@ -6,16 +6,14 @@ describe('LastTaskTimeInput', () => {
   it('renders the controlled value with the final-task start label', () => {
     render(<LastTaskTimeInput value="15:20:00" onChange={() => {}} />);
 
-    expect(screen.getByRole('textbox', { name: 'Inicio de la última tarea' })).toHaveValue(
-      '15:20:00',
-    );
+    expect(screen.getByRole('textbox', { name: 'Last task start' })).toHaveValue('15:20:00');
   });
 
   it('forwards edited text to the change callback', () => {
     const onChange = vi.fn();
     render(<LastTaskTimeInput value="" onChange={onChange} />);
 
-    fireEvent.change(screen.getByRole('textbox', { name: 'Inicio de la última tarea' }), {
+    fireEvent.change(screen.getByRole('textbox', { name: 'Last task start' }), {
       target: { value: '16:45:30' },
     });
 
@@ -32,7 +30,7 @@ describe('LastTaskTimeInput', () => {
       />,
     );
 
-    const input = screen.getByRole('textbox', { name: 'Inicio de la última tarea' });
+    const input = screen.getByRole('textbox', { name: 'Last task start' });
 
     expect(input).toBeDisabled();
     expect(input).toHaveAttribute('aria-invalid', 'true');
@@ -42,7 +40,7 @@ describe('LastTaskTimeInput', () => {
   it('offers the current-time action when provided', () => {
     const onUseCurrentTime = vi.fn();
     render(<LastTaskTimeInput value="" onChange={() => {}} onUseCurrentTime={onUseCurrentTime} />);
-    fireEvent.click(screen.getByRole('button', { name: 'Usar hora actual' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Use current time' }));
     expect(onUseCurrentTime).toHaveBeenCalledOnce();
   });
 });

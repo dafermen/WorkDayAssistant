@@ -1,5 +1,25 @@
 # Session Handoff
 
+## 2026-10-03 — TASK-029 phone-first responsive refinement
+
+Optimized the established calculator for its main phone use case without changing calculation
+behavior. The web viewport now supports display cutouts; the shell uses safe-area-aware padding and
+prevents horizontal overflow; time inputs stay at 16 pixels to avoid iPhone zoom; selectors and
+buttons meet mobile touch sizing; and primary/quick actions fill the available width. Added the real
+mobile screenshot at `docs/images/current-app-mobile.png` and linked it from the README. Formatting,
+lint, 123 tests with coverage above 94% in every category, production build, responsive visual
+review, and Capacitor synchronization pass. The bilingual and mobile updates are still local.
+
+## 2026-10-03 — TASK-028 English/Spanish interface and aligned form
+
+Added a small typed localization layer and a visible English/Spanish selector. English is always
+the initial language; every user-facing calculator message, date, and time-zone label follows the
+selection. Switching languages preserves values and active output while clearing stale validation
+text. CSS subgrid shares the form's internal rows on desktop, aligning all controls despite wrapped
+headings or descriptions, and the mobile layout returns to independent stacked rows. Updated the
+real English application screenshot; formatting, lint, 123 tests, coverage, and the production
+build pass. This update remains local pending publication.
+
 ## 2026-10-03 — v0.2.0 test-server delivery
 
 The browser workflow from source `7da88e1b7379427ef057c8b71e106987583f0c7a` is now deployed at

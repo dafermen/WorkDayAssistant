@@ -1,5 +1,23 @@
 # Changelog
 
+## 2026-10-03 — TASK-029 phone-first responsive refinement
+
+Refined the narrow-screen experience for the application's primary usage context. The layout now
+honors device safe areas, avoids horizontal overflow, uses mobile-friendly input sizing that
+prevents iPhone form zoom, provides at least 44-pixel touch actions, and makes the language selector,
+calculation action, time-zone selector, and quick actions easier to operate one-handed. Added a real
+mobile screenshot, synchronized the Android web assets, and verified formatting, lint, 123 tests,
+coverage, and the production build.
+
+## 2026-10-03 — TASK-028 bilingual interface and aligned fields
+
+Added a complete English/Spanish interface with English as the default. The selector localizes
+field labels, guidance, validation, date and time-zone text, results, countdown, alarm states,
+actions, and feedback without clearing entered values. The three calculator fields now share grid
+rows on desktop, keeping headings, descriptions, controls, and hints aligned when content wraps.
+Updated the real application screenshot and expanded the suite to 123 passing tests for the
+language switch.
+
 ## 2026-10-03 — v0.2.0 test-server delivery
 
 The browser workflow from source `7da88e1b7379427ef057c8b71e106987583f0c7a` is now deployed at

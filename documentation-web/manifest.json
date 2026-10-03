@@ -13,7 +13,7 @@
     {
       "id": "doc-2",
       "source": "docs/README.md",
-      "title": "WorkDayAssistant — Documentation map and maintenance",
+      "title": "WorkDayAssistant \u2014 Documentation map and maintenance",
       "section": "Product"
     },
     {
@@ -47,7 +47,7 @@
       "section": "Engineering"
     }
   ],
-  "images": ["docs/images/current-app.png"],
+  "images": ["docs/images/current-app.png", "docs/images/current-app-mobile.png"],
   "paths": [
     {
       "id": "doc-3",

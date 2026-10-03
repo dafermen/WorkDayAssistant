@@ -16,18 +16,18 @@ function enterCalculatorValues(
   maximumWorkday?: string,
 ) {
   if (maximumWorkday) {
-    fireEvent.change(screen.getByRole('textbox', { name: 'Jornada máxima' }), {
+    fireEvent.change(screen.getByRole('textbox', { name: 'Maximum workday' }), {
       target: { value: maximumWorkday },
     });
   }
 
-  fireEvent.change(screen.getByRole('textbox', { name: 'Tiempo trabajado' }), {
+  fireEvent.change(screen.getByRole('textbox', { name: 'Time worked' }), {
     target: { value: workedTime },
   });
-  fireEvent.change(screen.getByRole('textbox', { name: 'Inicio de la última tarea' }), {
+  fireEvent.change(screen.getByRole('textbox', { name: 'Last task start' }), {
     target: { value: lastTaskStartTime },
   });
-  fireEvent.click(screen.getByRole('button', { name: 'Calcular e iniciar' }));
+  fireEvent.click(screen.getByRole('button', { name: 'Calculate and start' }));
 }
 
 describe('App', () => {
@@ -39,10 +39,27 @@ describe('App', () => {
     vi.useRealTimers();
   });
 
-  it('starts with the editable maximum workday default', () => {
+  it('starts in English and switches the complete interface to Spanish', () => {
     render(<App />);
 
+    expect(screen.getByRole('combobox', { name: 'Language' })).toHaveValue('en');
+    expect(screen.getByRole('textbox', { name: 'Maximum workday' })).toHaveValue('07:29:30');
+    expect(document.documentElement).toHaveAttribute('lang', 'en');
+    fireEvent.change(screen.getByRole('textbox', { name: 'Time worked' }), {
+      target: { value: '063000' },
+    });
+
+    fireEvent.change(screen.getByRole('combobox', { name: 'Language' }), {
+      target: { value: 'es' },
+    });
+
+    expect(screen.getByRole('combobox', { name: 'Idioma' })).toHaveValue('es');
     expect(screen.getByRole('textbox', { name: 'Jornada máxima' })).toHaveValue('07:29:30');
+    expect(screen.getByRole('textbox', { name: 'Tiempo trabajado' })).toHaveValue('06:30:00');
+    expect(screen.getByRole('heading', { name: 'Hora actual' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Alarma sin programar' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Acciones rápidas' })).toBeInTheDocument();
+    expect(document.documentElement).toHaveAttribute('lang', 'es');
   });
 
   it('calculates the remaining duration and recommended closing time', () => {
@@ -50,13 +67,13 @@ describe('App', () => {
 
     enterCalculatorValues('06:30:00', '14:00:00');
 
-    expect(screen.getByRole('heading', { name: 'Tiempo restante' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Time remaining' })).toBeInTheDocument();
     expect(screen.getByText('00:59:30')).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'Cierre recomendado' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Recommended closing time' })).toBeInTheDocument();
     expect(
-      within(screen.getByRole('heading', { name: 'Cierre recomendado' }).parentElement!).getByText(
-        '14:59:30',
-      ),
+      within(
+        screen.getByRole('heading', { name: 'Recommended closing time' }).parentElement!,
+      ).getByText('14:59:30'),
     ).toBeInTheDocument();
   });
 
@@ -67,19 +84,19 @@ describe('App', () => {
 
     expect(screen.getByText('00:30:00')).toBeInTheDocument();
     expect(
-      within(screen.getByRole('heading', { name: 'Cierre recomendado' }).parentElement!).getByText(
-        '14:30:00',
-      ),
+      within(
+        screen.getByRole('heading', { name: 'Recommended closing time' }).parentElement!,
+      ).getByText('14:30:00'),
     ).toBeInTheDocument();
   });
 
   it('shows validation errors when required values are missing', () => {
     render(<App />);
 
-    fireEvent.click(screen.getByRole('button', { name: 'Calcular e iniciar' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Calculate and start' }));
 
-    expect(screen.getByText('Ingresa el tiempo trabajado.')).toBeInTheDocument();
-    expect(screen.getByText('Ingresa la hora de inicio de la última tarea.')).toBeInTheDocument();
+    expect(screen.getByText('Enter the time worked.')).toBeInTheDocument();
+    expect(screen.getByText('Enter the last task start time.')).toBeInTheDocument();
   });
 
   it('shows format errors and clears them when the corresponding value changes', () => {
@@ -89,7 +106,7 @@ describe('App', () => {
 
     expect(screen.getAllByRole('alert')).toHaveLength(2);
 
-    fireEvent.change(screen.getByRole('textbox', { name: 'Tiempo trabajado' }), {
+    fireEvent.change(screen.getByRole('textbox', { name: 'Time worked' }), {
       target: { value: '06:30:00' },
     });
 
@@ -101,9 +118,9 @@ describe('App', () => {
 
     enterCalculatorValues('06:30:00', '14:00:00', '7:29');
 
-    expect(screen.getByRole('alert')).toHaveTextContent('Usa HH:mm:ss para la jornada máxima');
+    expect(screen.getByRole('alert')).toHaveTextContent('Use HH:mm:ss for the maximum workday');
 
-    fireEvent.change(screen.getByRole('textbox', { name: 'Jornada máxima' }), {
+    fireEvent.change(screen.getByRole('textbox', { name: 'Maximum workday' }), {
       target: { value: '07:29:30' },
     });
 
@@ -115,8 +132,10 @@ describe('App', () => {
 
     enterCalculatorValues('07:30:00', '14:00:00');
 
-    expect(screen.getByRole('alert')).toHaveTextContent('Has excedido 07:29:30 por 00:00:30.');
-    expect(screen.queryByRole('heading', { name: 'Cierre recomendado' })).not.toBeInTheDocument();
+    expect(screen.getByRole('alert')).toHaveTextContent('You exceeded 07:29:30 by 00:00:30.');
+    expect(
+      screen.queryByRole('heading', { name: 'Recommended closing time' }),
+    ).not.toBeInTheDocument();
   });
 
   it('identifies a recommended closing time on the next day', () => {
@@ -125,22 +144,22 @@ describe('App', () => {
     enterCalculatorValues('06:30:00', '23:30:00');
 
     expect(
-      within(screen.getByRole('heading', { name: 'Cierre recomendado' }).parentElement!).getByText(
-        '00:29:30',
-      ),
+      within(
+        screen.getByRole('heading', { name: 'Recommended closing time' }).parentElement!,
+      ).getByText('00:29:30'),
     ).toBeInTheDocument();
-    expect(screen.getByText('Día siguiente')).toBeInTheDocument();
+    expect(screen.getByText('Next day')).toBeInTheDocument();
   });
 
   it('clears a previous result when an input is edited', () => {
     render(<App />);
 
     enterCalculatorValues('06:30:00', '14:00:00');
-    fireEvent.change(screen.getByRole('textbox', { name: 'Tiempo trabajado' }), {
+    fireEvent.change(screen.getByRole('textbox', { name: 'Time worked' }), {
       target: { value: '06:45:00' },
     });
 
-    expect(screen.queryByRole('heading', { name: 'Tiempo restante' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: 'Time remaining' })).not.toBeInTheDocument();
   });
 
   it('shows New York time by default and lets the user change zones', () => {
@@ -149,9 +168,9 @@ describe('App', () => {
     render(<App />);
 
     expect(screen.getByText('12:00:00')).toBeInTheDocument();
-    expect(screen.getByRole('combobox', { name: 'Zona horaria' })).toHaveValue('America/New_York');
+    expect(screen.getByRole('combobox', { name: 'Time zone' })).toHaveValue('America/New_York');
 
-    fireEvent.change(screen.getByRole('combobox', { name: 'Zona horaria' }), {
+    fireEvent.change(screen.getByRole('combobox', { name: 'Time zone' }), {
       target: { value: 'America/Los_Angeles' },
     });
 
@@ -166,9 +185,9 @@ describe('App', () => {
 
     expect(audioServiceMock.prime).toHaveBeenCalledOnce();
     expect(screen.getByRole('timer')).toHaveTextContent('00:59:30');
-    expect(screen.getByRole('heading', { name: 'Alarma activada' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Alarm active' })).toBeInTheDocument();
 
-    fireEvent.change(screen.getByRole('combobox', { name: 'Zona horaria' }), {
+    fireEvent.change(screen.getByRole('combobox', { name: 'Time zone' }), {
       target: { value: 'UTC' },
     });
 
@@ -189,7 +208,7 @@ describe('App', () => {
 
     expect(screen.getByRole('timer')).toHaveTextContent('00:00:00');
     expect(audioServiceMock.play).toHaveBeenCalledOnce();
-    fireEvent.click(screen.getByRole('button', { name: 'Detener alarma' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Stop alarm' }));
     expect(audioServiceMock.stop).toHaveBeenCalled();
   });
 
@@ -199,7 +218,9 @@ describe('App', () => {
     render(<App />);
     enterCalculatorValues('06:30:00', '12:00:00');
 
-    expect(screen.getByRole('alert')).toHaveTextContent('La hora recomendada ya pasó');
+    expect(screen.getByRole('alert')).toHaveTextContent(
+      'The recommended closing time has already passed',
+    );
     expect(screen.queryByRole('timer')).not.toBeInTheDocument();
   });
 
@@ -208,17 +229,15 @@ describe('App', () => {
     vi.setSystemTime(new Date('2026-10-03T16:04:05.000Z'));
     render(<App />);
 
-    fireEvent.click(screen.getByRole('button', { name: 'Usar hora actual' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Use current time' }));
 
-    expect(screen.getByRole('textbox', { name: 'Inicio de la última tarea' })).toHaveValue(
-      '12:04:05',
-    );
-    expect(screen.getByRole('status')).toHaveTextContent('Se colocó la hora actual');
+    expect(screen.getByRole('textbox', { name: 'Last task start' })).toHaveValue('12:04:05');
+    expect(screen.getByRole('status')).toHaveTextContent('Current time entered');
   });
 
   it('automatically inserts separators while typing digits', () => {
     render(<App />);
-    const workedTime = screen.getByRole('textbox', { name: 'Tiempo trabajado' });
+    const workedTime = screen.getByRole('textbox', { name: 'Time worked' });
 
     fireEvent.change(workedTime, { target: { value: '063000' } });
 
@@ -227,16 +246,16 @@ describe('App', () => {
 
   it('completes four digits with zero seconds before calculation', () => {
     render(<App />);
-    const workedTime = screen.getByRole('textbox', { name: 'Tiempo trabajado' });
-    const taskStart = screen.getByRole('textbox', { name: 'Inicio de la última tarea' });
+    const workedTime = screen.getByRole('textbox', { name: 'Time worked' });
+    const taskStart = screen.getByRole('textbox', { name: 'Last task start' });
 
     fireEvent.change(workedTime, { target: { value: '0630' } });
     fireEvent.blur(workedTime);
     fireEvent.change(taskStart, { target: { value: '1400' } });
     fireEvent.blur(taskStart);
-    fireEvent.click(screen.getByRole('button', { name: 'Calcular e iniciar' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Calculate and start' }));
 
-    expect(screen.getByRole('heading', { name: 'Tiempo restante' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Time remaining' })).toBeInTheDocument();
   });
 
   it('tests the alarm and resets the form from quick actions', async () => {
@@ -244,17 +263,17 @@ describe('App', () => {
     render(<App />);
 
     await act(async () => {
-      fireEvent.click(screen.getByRole('button', { name: 'Probar alarma' }));
+      fireEvent.click(screen.getByRole('button', { name: 'Test alarm' }));
       await Promise.resolve();
     });
     expect(audioServiceMock.play).toHaveBeenCalledWith('closing-time');
-    expect(screen.getByRole('status')).toHaveTextContent('Prueba de alarma en curso');
+    expect(screen.getByRole('status')).toHaveTextContent('Alarm test in progress');
 
-    fireEvent.change(screen.getByRole('textbox', { name: 'Tiempo trabajado' }), {
+    fireEvent.change(screen.getByRole('textbox', { name: 'Time worked' }), {
       target: { value: '063000' },
     });
-    fireEvent.click(screen.getByRole('button', { name: 'Nueva jornada' }));
-    expect(screen.getByRole('textbox', { name: 'Tiempo trabajado' })).toHaveValue('');
-    expect(screen.getByRole('textbox', { name: 'Jornada máxima' })).toHaveValue('07:29:30');
+    fireEvent.click(screen.getByRole('button', { name: 'New workday' }));
+    expect(screen.getByRole('textbox', { name: 'Time worked' })).toHaveValue('');
+    expect(screen.getByRole('textbox', { name: 'Maximum workday' })).toHaveValue('07:29:30');
   });
 });

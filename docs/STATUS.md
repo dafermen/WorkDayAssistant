@@ -1,5 +1,24 @@
 # Status
 
+## 2026-10-03 — TASK-029 phone-first responsive refinement
+
+The calculator is now optimized for phone use with device safe-area support, overflow protection,
+touch-friendly controls, full-width mobile actions, compact vertical spacing, and input text sized
+to avoid automatic iPhone zoom. A real 500-pixel-wide application capture confirms the complete
+English workflow fits a single readable column. Formatting, lint, 123 tests, all coverage gates,
+production build, and Capacitor synchronization pass. This update remains local pending
+publication and deployment.
+
+## 2026-10-03 — TASK-028 bilingual interface and field alignment
+
+English is now the default interface language, with a visible selector that changes the entire
+workflow to Spanish. Dates and time-zone names use the selected locale, validation messages update
+safely, and form/calculation values remain intact. Desktop calculator columns use shared grid rows
+so the last-task field no longer sits below the other inputs. The responsive English interface and
+updated real screenshot were visually reviewed; formatting, lint, tests, coverage, and production
+build pass locally. The suite has 123 passing tests and every coverage category remains above 94%.
+This update has not yet been published or deployed.
+
 ## 2026-10-03 — v0.2.0 test-server delivery
 
 The browser workflow from source `7da88e1b7379427ef057c8b71e106987583f0c7a` is now deployed at

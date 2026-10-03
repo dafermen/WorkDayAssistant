@@ -11,6 +11,7 @@ import {
   WorkedTimeInput,
 } from '../components';
 import { useCountdown, useCurrentTime, useWorkdayCalculator } from '../hooks';
+import { useLanguage, type Language, type TranslationKey } from '../i18n';
 import { webAudioAlertService } from '../services';
 import type { WorkdayCalculation } from '../types';
 import {
@@ -23,25 +24,35 @@ import '../styles/workday-calculator.css';
 
 const DEFAULT_TIME_ZONE = 'America/New_York';
 
-const timeZoneOptions = [
-  { value: 'America/New_York', label: 'New York (hora del Este)' },
-  { value: 'America/Chicago', label: 'Chicago (hora Central)' },
-  { value: 'America/Denver', label: 'Denver (hora de la Montaña)' },
-  { value: 'America/Los_Angeles', label: 'Los Ángeles (hora del Pacífico)' },
-  { value: 'America/Anchorage', label: 'Anchorage (Alaska)' },
-  { value: 'Pacific/Honolulu', label: 'Honolulu (Hawái)' },
-  { value: 'UTC', label: 'UTC' },
+const timeZoneOptions: ReadonlyArray<{ value: string; labelKey: TranslationKey }> = [
+  { value: 'America/New_York', labelKey: 'timezone.newYork' },
+  { value: 'America/Chicago', labelKey: 'timezone.chicago' },
+  { value: 'America/Denver', labelKey: 'timezone.denver' },
+  { value: 'America/Los_Angeles', labelKey: 'timezone.losAngeles' },
+  { value: 'America/Anchorage', labelKey: 'timezone.anchorage' },
+  { value: 'Pacific/Honolulu', labelKey: 'timezone.honolulu' },
+  { value: 'UTC', labelKey: 'timezone.utc' },
 ] as const;
 
+interface FeedbackMessage {
+  readonly key: TranslationKey;
+  readonly variables?: Readonly<Record<string, string>>;
+}
+
 export function HomePage() {
-  const calculator = useWorkdayCalculator();
+  const { language, locale, setLanguage, t } = useLanguage();
+  const calculator = useWorkdayCalculator(language);
   const countdown = useCountdown();
   const [timeZone, setTimeZone] = useState(DEFAULT_TIME_ZONE);
-  const [countdownError, setCountdownError] = useState<string | null>(null);
-  const [feedbackMessage, setFeedbackMessage] = useState<string | null>(null);
+  const [hasCountdownError, setHasCountdownError] = useState(false);
+  const [feedbackMessage, setFeedbackMessage] = useState<FeedbackMessage | null>(null);
   const lastAlarmTarget = useRef<number | null>(null);
   const testAlarmTimeout = useRef<number | null>(null);
-  const clock = useCurrentTime(timeZone);
+  const clock = useCurrentTime(timeZone, locale);
+  const localizedTimeZoneOptions = timeZoneOptions.map((option) => ({
+    value: option.value,
+    label: t(option.labelKey),
+  }));
 
   useEffect(() => {
     if (
@@ -55,9 +66,7 @@ export function HomePage() {
     lastAlarmTarget.current = countdown.targetTimestamp;
     void webAudioAlertService
       .play('closing-time')
-      .catch(() =>
-        setFeedbackMessage('No fue posible reproducir la alarma. Revisa el sonido del equipo.'),
-      );
+      .catch(() => setFeedbackMessage({ key: 'feedback.playError' }));
   }, [countdown.status, countdown.targetTimestamp]);
 
   useEffect(
@@ -84,7 +93,7 @@ export function HomePage() {
     countdown.cancel();
     webAudioAlertService.stop();
     lastAlarmTarget.current = null;
-    setCountdownError(null);
+    setHasCountdownError(false);
     setFeedbackMessage(null);
   }
 
@@ -105,12 +114,17 @@ export function HomePage() {
 
   function handleUseCurrentTime() {
     handleLastTaskStartTimeChange(clock.time);
-    setFeedbackMessage(`Se colocó la hora actual: ${clock.time}.`);
+    setFeedbackMessage({ key: 'feedback.currentTime', variables: { time: clock.time } });
   }
 
   function handleTimeZoneChange(nextTimeZone: string) {
     setTimeZone(nextTimeZone);
     resetActiveCountdown();
+  }
+
+  function handleLanguageChange(nextLanguage: Language) {
+    calculator.clearErrors();
+    setLanguage(nextLanguage);
   }
 
   async function startCountdown(calculation: WorkdayCalculation) {
@@ -122,13 +136,11 @@ export function HomePage() {
     });
 
     if (targetTimestamp === null) {
-      setCountdownError(
-        'La hora recomendada ya pasó en esta zona horaria. Revisa los valores y calcula de nuevo.',
-      );
+      setHasCountdownError(true);
       return;
     }
 
-    setCountdownError(null);
+    setHasCountdownError(false);
     setFeedbackMessage(null);
     lastAlarmTarget.current = null;
     countdown.start(targetTimestamp);
@@ -136,9 +148,7 @@ export function HomePage() {
     try {
       await webAudioAlertService.prime();
     } catch {
-      setFeedbackMessage(
-        'La cuenta regresiva funcionará, pero el navegador no confirmó el sonido de la alarma.',
-      );
+      setFeedbackMessage({ key: 'feedback.soundNotConfirmed' });
     }
   }
 
@@ -146,7 +156,7 @@ export function HomePage() {
     countdown.cancel();
     webAudioAlertService.stop();
     lastAlarmTarget.current = null;
-    setFeedbackMessage('La cuenta regresiva y la alarma fueron canceladas.');
+    setFeedbackMessage({ key: 'feedback.cancelled' });
   }
 
   async function handleTestAlarm() {
@@ -157,21 +167,21 @@ export function HomePage() {
     try {
       await webAudioAlertService.prime();
       await webAudioAlertService.play('closing-time');
-      setFeedbackMessage('Prueba de alarma en curso. Se detendrá automáticamente.');
+      setFeedbackMessage({ key: 'feedback.testRunning' });
       testAlarmTimeout.current = window.setTimeout(() => {
         webAudioAlertService.stop();
         testAlarmTimeout.current = null;
-        setFeedbackMessage('Prueba de alarma completada correctamente.');
+        setFeedbackMessage({ key: 'feedback.testComplete' });
       }, 1500);
     } catch {
-      setFeedbackMessage('No fue posible probar la alarma. Revisa los permisos y el volumen.');
+      setFeedbackMessage({ key: 'feedback.testError' });
     }
   }
 
   function handleResetWorkday() {
     resetActiveCountdown();
     calculator.reset();
-    setFeedbackMessage('Nueva jornada lista. Los valores anteriores fueron eliminados.');
+    setFeedbackMessage({ key: 'feedback.reset' });
   }
 
   const countdownTime = convertSecondsToTime(countdown.remainingSeconds);
@@ -190,18 +200,26 @@ export function HomePage() {
   return (
     <main className="app-shell">
       <section className="status-card calculator-card" aria-labelledby="app-title">
-        <p className="eyebrow">Calculadora de jornada</p>
+        <div className="calculator-card__toolbar">
+          <label className="language-select">
+            <span>{t('language.label')}</span>
+            <select
+              value={language}
+              onChange={(event) => handleLanguageChange(event.target.value as Language)}
+            >
+              <option value="en">{t('language.english')}</option>
+              <option value="es">{t('language.spanish')}</option>
+            </select>
+          </label>
+        </div>
+        <p className="eyebrow">{t('app.eyebrow')}</p>
         <h1 id="app-title">WorkDay Assistant</h1>
-        <p>
-          Indica cuánto tiempo llevabas acumulado justo antes de comenzar tu última tarea y la hora
-          exacta en que la iniciaste. Calcularemos el cierre y activaremos la cuenta regresiva en
-          una sola acción.
-        </p>
+        <p>{t('app.intro')}</p>
 
         <CurrentTimePanel
           clock={clock}
           timeZone={timeZone}
-          options={timeZoneOptions}
+          options={localizedTimeZoneOptions}
           onTimeZoneChange={handleTimeZoneChange}
         />
 
@@ -225,7 +243,7 @@ export function HomePage() {
             />
           </div>
           <button className="calculator-form__button" type="submit">
-            Calcular e iniciar
+            {t('action.calculate')}
           </button>
         </form>
 
@@ -236,7 +254,7 @@ export function HomePage() {
         />
 
         <section className="quick-actions" aria-labelledby="quick-actions-title">
-          <h2 id="quick-actions-title">Acciones rápidas</h2>
+          <h2 id="quick-actions-title">{t('quickActions.title')}</h2>
           <div>
             <button
               className="secondary-button"
@@ -244,15 +262,17 @@ export function HomePage() {
               onClick={() => void handleTestAlarm()}
               disabled={countdown.status !== 'idle'}
             >
-              Probar alarma
+              {t('action.testAlarm')}
             </button>
             {countdown.status !== 'idle' ? (
               <button className="secondary-button" type="button" onClick={handleStopCountdown}>
-                {countdown.status === 'complete' ? 'Detener alarma' : 'Cancelar cuenta regresiva'}
+                {countdown.status === 'complete'
+                  ? t('action.stopAlarm')
+                  : t('action.cancelCountdown')}
               </button>
             ) : null}
             <button className="secondary-button" type="button" onClick={handleResetWorkday}>
-              Nueva jornada
+              {t('action.newWorkday')}
             </button>
           </div>
         </section>
@@ -267,7 +287,7 @@ export function HomePage() {
         {calculator.calculation ? (
           <section
             className="calculation-results"
-            aria-label="Resultado del cálculo"
+            aria-label={t('result.label')}
             aria-live="polite"
           >
             <RemainingTimeCard time={calculator.calculation.remainingTime} />
@@ -276,10 +296,7 @@ export function HomePage() {
               dayOffset={calculator.calculation.recommendedClosingDayOffset}
             />
             <div className="countdown-controls">
-              <p>
-                Se usa la hora real del dispositivo. Al volver desde otra aplicación, el contador se
-                sincroniza automáticamente.
-              </p>
+              <p>{t('result.syncNote')}</p>
             </div>
           </section>
         ) : null}
@@ -288,20 +305,20 @@ export function HomePage() {
           <Countdown time={countdownTime} state={countdownVisualState} />
         ) : null}
 
-        {countdownError ? (
+        {hasCountdownError ? (
           <p className="inline-message inline-message--error" role="alert">
-            {countdownError}
+            {t('feedback.pastClosing')}
           </p>
         ) : null}
 
         {feedbackMessage ? (
           <p className="inline-message" role="status">
-            {feedbackMessage}
+            {t(feedbackMessage.key, feedbackMessage.variables)}
           </p>
         ) : null}
 
         <a className="calculator-card__documentation" href="./docs/index.html">
-          Ver documentación
+          {t('documentation.link')}
         </a>
       </section>
     </main>

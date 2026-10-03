@@ -14,9 +14,18 @@ is deployed through GitHub Pages at
 
 ![Current WorkDay Assistant development build](./docs/images/current-app.png)
 
-The image above is captured from the actual production build. The calculator accepts numeric time
-entry, inserts separators, and presents the result plus alarm state after the user selects
-**Calcular e iniciar**.
+The image above is captured from the actual application build. English is the default interface
+language, and the language selector changes the complete workflow to Spanish. The calculator
+accepts numeric time entry, inserts separators, and presents the result plus alarm state after the
+user selects **Calculate and start** or **Calcular e iniciar**.
+
+### Mobile layout
+
+![WorkDay Assistant optimized mobile layout](./docs/images/current-app-mobile.png)
+
+The phone layout uses a single readable column, full-width primary actions, touch-friendly controls,
+safe-area spacing for modern iPhone and Android screens, and 16-pixel time inputs to prevent
+automatic zoom while typing.
 
 ## Implemented
 
@@ -38,12 +47,17 @@ entry, inserts separators, and presents the result plus alarm state after the us
   digits receive `00` seconds on completion.
 - **Usar hora actual**, one-step **Calcular e iniciar**, explicit alarm status, alarm test, cancel,
   and new-workday actions.
+- Complete English and Spanish interface with English as the default, including localized date,
+  time-zone, validation, calculation, countdown, alarm, and feedback text.
+- Shared grid rows keep all three time fields aligned even when labels or explanations wrap.
+- Mobile-first spacing, touch targets, safe areas, and full-width actions for reliable one-handed
+  use on narrow screens.
 - Capacitor Android project and web-to-native synchronization.
 - Automated formatting, lint, tests, coverage, build, and GitHub CI.
 
 ## Quality baseline
 
-- 122 automated tests across 21 files.
+- 123 automated tests across 21 files.
 - More than 95% measured coverage in every configured category.
 - Zero known production dependency vulnerabilities.
 - Secret-pattern and sensitive-filename checks completed before the initial GitHub publication.
@@ -66,6 +80,9 @@ npm run dev
 ```
 
 Open the local URL shown by Vite.
+
+The application opens in English. Use the **Language** selector to switch the complete interface to
+Spanish at any time; entered values and an active calculation are preserved.
 
 Enter time values with four or six digits; separators are inserted automatically:
 

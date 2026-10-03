@@ -16,8 +16,11 @@
 }
 
 .time-input__action {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
   flex: none;
-  padding: 0;
+  padding: 0 0.15rem;
   border: 0;
   color: #7dd3fc;
   background: transparent;
@@ -41,11 +44,13 @@
 
 .time-input__control {
   width: 100%;
+  min-height: 3rem;
   padding: 0.85rem 1rem;
   border: 1px solid #526784;
   border-radius: 0.75rem;
   color: #f8fafc;
   background: #0d1728;
+  font-size: 1rem;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.08em;
 }
@@ -84,4 +89,22 @@
 
 .time-input__error {
   color: #fda4af;
+}
+
+@media (max-width: 36rem) {
+  .time-input {
+    gap: 0.35rem;
+  }
+
+  .time-input__heading {
+    flex-wrap: wrap;
+  }
+
+  .time-input__action {
+    margin: -0.5rem 0;
+  }
+
+  .time-input__description {
+    min-height: 0;
+  }
 }
