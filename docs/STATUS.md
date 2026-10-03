@@ -1,5 +1,24 @@
 # Status
 
+## 2026-10-03 — Bilingual and mobile update deployed
+
+The English/Spanish interface and phone layout (TASK-028 and TASK-029) are deployed at
+<https://workdayassistant.innovalogic.tech/> from source `0756fcd` (GitHub PR #4).
+This delivery supersedes the local/pending publication notes below. Version remains `0.2.0`.
+Formatting, lint, 123 tests, coverage gates, production build and production dependency audit
+passed; the audit reported zero production vulnerabilities. Chrome checks passed locally and
+on the public HTTPS site at 1440, 500, 390 and 320 pixels. They cover English by default, Spanish
+switching while preserving inputs/results/countdown, mobile controls, calculation, countdown
+completion, alarm activation/stop/test, exceeded limits, midnight rollover, reset and documentation.
+The mobile screenshot is now included in the documentation reader's image allowlist.
+
+Release: `/opt/workdayassistant/releases/20261003-bilingual-0756fcd`.
+Previous release: `/opt/workdayassistant/releases/20261003-v020-8d32f85-docs`.
+Backup and deployment evidence: `/var/backups/workdayassistant/20261003-bilingual-0756fcd`.
+Only static files were published; HTTPS, security headers and Nginx configuration were preserved.
+Browser tests verify Web Audio behavior, not physical speaker audibility or native background
+notifications. Deployment used an isolated snapshot to preserve the original local working files.
+
 ## 2026-10-03 — TASK-029 phone-first responsive refinement
 
 The calculator is now optimized for phone use with device safe-area support, overflow protection,
