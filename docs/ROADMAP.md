@@ -51,7 +51,18 @@ Completed: `TASK-021` — worked-time domain wrapper.
 
 Completed: `TASK-022` — final-task start domain wrapper.
 
-Next task: `TASK-023` — create `Countdown`.
+Completed: `TASK-024` — connect the calculator form, validation, results, and over-limit warning.
+
+Completed: `TASK-025` — make the maximum workday editable with a `07:29:30` default.
+
+Completed: `TASK-023` — accessible countdown presentation.
+
+Completed: `TASK-026` — New York clock, selectable time zone, absolute countdown, and browser alarm.
+
+Completed: `TASK-027` — numeric entry, current-time shortcut, one-step start, clear alarm state, and
+quick actions.
+
+Next task: persist the selected time zone and add native background notification scheduling.
 
 ## Phase 4 — Persistence
 
@@ -63,7 +74,8 @@ Persist application data through a dedicated service.
 
 Status: **NOT STARTED**
 
-Add audible and visual alarms, Capacitor local notifications, and supported background behavior.
+Browser audible and visual alarms are complete. Capacitor local notifications and native background
+behavior remain pending.
 
 ## Phase 6 — Testing
 

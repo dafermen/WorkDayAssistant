@@ -35,6 +35,9 @@ coverage tests, and the production build for pushes and pull requests targeting 
 
 The workflow uses read-only repository permissions. No application secrets are required.
 
+`pages.yml` separately receives only `contents: read`, `pages: write`, and `id-token: write`. A push
+to `main` builds the verified static application and publishes it to GitHub Pages.
+
 ## Dependency maintenance
 
 Dependabot checks npm packages and GitHub Actions weekly. Security fixes should remain small,

@@ -6,7 +6,9 @@ Documentation standard v1.0 · reviewed 2026-10-02. Primary language: English.
 
 Android-first React/TypeScript workday assistant with web preview.
 
-The published preview is a development milestone, not a completed end-to-end calculator. Keep business-logic evidence separate from the unfinished interface, notifications and persistence. Android synchronization does not establish native distribution or device acceptance.
+Version `0.2.0` includes the calculator, zoned clock, countdown, streamlined numeric input, and
+browser alarm. Persistence and native background notifications remain unfinished. GitHub Pages,
+Android synchronization, and native device acceptance remain separate release states.
 
 | Need            | Authoritative source                                        |
 | --------------- | ----------------------------------------------------------- |
@@ -29,3 +31,7 @@ Start with the presentation and current state, then read the user guide to try t
 Keep current state, change history and decisions separate. Existing dated test results remain historical evidence. Adding this map does not rerun every documented command or complete pending product acceptance. Record actual checks, their environment and unresolved limits before publication.
 
 Update the source guide whenever commands, configuration, behavior, permissions or deployment change. Keep existing links and portal routes stable. Use real screenshots with synthetic data; never publish env values, access keys, user data or operational logs. A local commit, a remote commit and a deployed artifact are separate states.
+
+## Web reading
+
+[Build and maintain the documentation reader](../documentation-web/README.md).

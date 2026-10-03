@@ -64,10 +64,14 @@ The approved Phase 2 APIs are:
 | `TASK-001` | `convertTimeToSeconds(value: TimeText): DurationSeconds`                               | Convert validated `HH:mm:ss` text to a numeric duration.    |
 | `TASK-002` | `convertSecondsToTime(value: DurationSeconds): TimeText`                               | Format a non-negative duration as `HH:mm:ss`.               |
 | `TASK-003` | `validateTime(value: RawTimeInput): TimeText \| null`                                  | Normalize external whitespace and reject invalid time text. |
-| `TASK-004` | `calculateRemainingTime(worked: DurationSeconds): RemainingTimeResult`                 | Return remaining time or an explicit over-limit warning.    |
+| `TASK-004` | `calculateRemainingTime(worked, maximumWorkday?): RemainingTimeResult`                 | Return remaining time or an explicit over-limit warning.    |
 | `TASK-005` | `calculateClosingTime(start: TimeText, remaining: DurationSeconds): ClosingTimeResult` | Add time and expose midnight rollover.                      |
 | `TASK-006` | `isOneMinuteRemaining(remaining: DurationSeconds): boolean`                            | Identify the one-minute alert state.                        |
 | `TASK-007` | `isClosingTime(remaining: DurationSeconds): boolean`                                   | Identify the closing alert state.                           |
+| `TASK-026` | `calculateCountdownTarget(input): number \| null`                                      | Resolve a zoned wall-clock result to an absolute instant.   |
+| `TASK-026` | `formatZonedClock(date, timeZone): ZonedClock`                                         | Format current time and date in an IANA time zone.          |
+| `TASK-027` | `formatTimeInput(value): string`                                                       | Insert separators into up to six numeric time digits.       |
+| `TASK-027` | `completeTimeInput(value): string`                                                     | Supply zero seconds to a complete four-digit entry.         |
 
 The maximum workday constant will be introduced with `TASK-004`, the first task that needs it. This
 avoids adding unused production code during the architecture phase.
@@ -79,17 +83,20 @@ Will contain adapters that implement the contracts in `src/types/services.ts`:
 - `localStorageWorkdayService`: the only module allowed to access `localStorage`.
 - `capacitorNotificationService`: schedules and cancels native local notifications.
 - `webNotificationService`: supported browser notification behavior.
-- `audioAlertService`: plays and stops audible alerts.
+- `webAudioAlertService`: primes Web Audio from a user gesture, then plays and stops audible alerts.
 
 Hooks receive service interfaces instead of constructing platform implementations internally. This
 supports test doubles and avoids importing Capacitor into web-independent code.
 
 ### `src/hooks`
 
-Planned hooks and responsibilities:
+Hooks and responsibilities:
 
-- `useWorkdayCalculator`: owns raw form values, validation issues, and the derived calculation.
-- `useCountdown`: turns an approved closing instant into changing remaining seconds.
+- `useWorkdayCalculator`: implemented; owns raw form values, validation issues, the derived
+  calculation, and the explicit over-limit presentation value.
+- `useCountdown`: implemented; turns an approved closing instant into changing remaining seconds
+  and resynchronizes on interval, visibility, focus, and page-show events.
+- `useCurrentTime`: implemented; renders a live clock in the selected IANA zone.
 - `useWorkdayPersistence`: loads and saves through `WorkdayStorageService`.
 - `useWorkdayAlerts`: reacts to alert states and delegates to audio/notification services.
 
@@ -103,7 +110,9 @@ Planned reusable presentation components:
 - `WorkedTimeInput`: implemented domain-labelled wrapper around `TimeInput`.
 - `LastTaskTimeInput`: implemented domain-labelled wrapper around `TimeInput`.
 - `RemainingTimeCard` and `ClosingTimeCard`: result presentation.
-- `Countdown`: live countdown presentation.
+- `Countdown`: implemented live countdown presentation with normal, final-minute, and closing states.
+- `CurrentTimePanel`: implemented clock and time-zone selector presentation.
+- `AlarmStatusCard`: implemented inactive, active, and ringing alarm confirmation.
 - `AlertBanner`: visual warning state.
 - `DarkModeToggle`: theme control.
 
@@ -117,8 +126,9 @@ calculation formulas or platform-specific code.
 
 ## Data flow
 
-1. The user enters raw `workedTime` and `lastTaskStartTime` text.
-2. `useWorkdayCalculator` asks `validateTime` to narrow each value to `TimeText`.
+1. The user accepts or edits `maximumWorkday`, then enters raw `workedTime` and
+   `lastTaskStartTime` text.
+2. `useWorkdayCalculator` asks `validateTime` to narrow all three values to `TimeText`.
 3. Pure utilities convert values to seconds and calculate the remaining duration and closing time.
 4. The hook exposes either validation issues or a `WorkdayCalculation` to the page.
 5. Presentation components render the calculation without recomputing it.
@@ -159,14 +169,28 @@ The project-wide minimum remains 90% for statements, branches, functions, and li
 - `TASK-003`: surrounding whitespace is removed before validation. Internal whitespace is rejected.
   The function returns the normalized `TimeText` or `null` because a boolean type predicate cannot
   safely expose a transformed string.
-- `TASK-004`: worked time above `07:29:45` returns `over-limit`, zero remaining seconds, and the
-  number of excess seconds. This gives the UI an explicit warning state without a negative countdown.
+- `TASK-004`: worked time above the provided maximum returns `over-limit`, zero remaining seconds,
+  and the number of excess seconds. Without a provided maximum, the utility uses `07:29:30`. This
+  gives the UI an explicit warning state without a negative countdown.
 - `TASK-005`: closing times wrap to a valid 24-hour clock and return `dayOffset`. The UI can show
   “next day” without inventing a calendar date that was never provided.
 - `TASK-006`: the one-minute warning window is inclusive from 60 through 1 second. Zero belongs to
   the closing state; alert coordination must trigger sound only once when entering this window.
 - `TASK-007`: closing state begins at zero and remains true for negative values so a delayed timer
   cannot lose the alert after an app resumes.
+- `TASK-024`: calculation runs on explicit form submission. Editing either input clears any previous
+  result or warning so the interface cannot show output derived from stale values.
+- `TASK-025`: maximum workday is a validated input with a `07:29:30` default. It is converted to
+  seconds once at the hook boundary and passed to `calculateRemainingTime`; components never
+  duplicate the subtraction rule. `PersistedWorkdayData` advances to version 2 so future persistence
+  can save the selected maximum without misreading the earlier two-input shape.
+- `TASK-026`: `America/New_York` is the initial zone. IANA time-zone conversion provides automatic
+  daylight-saving behavior. Countdown state stores an absolute target and derives remaining seconds
+  from `Date.now()` so suspended callbacks do not create drift. Browser audio is best effort; exact
+  background delivery requires the later native local-notification adapter.
+- `TASK-027`: `TimeInput` owns only keystroke formatting and blur completion; validation remains at
+  the calculator boundary. `useWorkdayCalculator.calculate()` returns the same derived result that
+  it stores so one user gesture can calculate, prime audio, and start the absolute countdown.
 
 ## Explicit decisions deferred to their tasks
 

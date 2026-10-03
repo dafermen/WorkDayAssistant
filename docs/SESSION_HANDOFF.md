@@ -1,5 +1,45 @@
 # Session Handoff
 
+## 2026-10-03 — TASK-027 streamlined workflow and v0.2.0
+
+Implemented separator-free numeric time entry, four-digit completion, **Usar hora actual**, one-step
+calculation/countdown start, explicit alarm confirmation, alarm testing, cancellation, new-workday
+reset, and inline field explanations. Added a GitHub Pages workflow and relative production asset
+paths, updated the real screenshot and release documentation, and advanced the package to `0.2.0`.
+Formatting, ESLint, 122 tests across 21 files, all coverage categories above 95%, production build,
+desktop/mobile review, and Capacitor sync pass.
+
+## 2026-10-03 — TASK-023 and TASK-026 zoned countdown (local)
+
+Implemented a live New York clock with a selectable IANA zone, exact wall-clock-to-timestamp
+conversion, an absolute countdown that resynchronizes after browser suspension, accessible
+final-minute/closing states, and a Web Audio alarm primed by the start button and stopped explicitly.
+Updated the real screenshot and all product, architecture, testing, status, task, and handoff
+documentation. Formatting, ESLint, 102 tests across 19 files, coverage above 94% in every category,
+production build, desktop visual review, and Capacitor synchronization pass. The combined local work
+has not been committed or published.
+
+## 2026-10-03 — TASK-025 editable maximum workday (local)
+
+Made `Jornada máxima` editable and changed its default to `07:29:30`. The calculator validates the
+limit, passes it into the pure remaining-time utility, clears stale output when it changes, and uses
+it in the over-limit warning. Updated the current screenshot and documentation. Formatting, ESLint,
+79 tests with 100% coverage, production build, responsive visual review, and Capacitor
+synchronization pass. The combined local work has not been committed or published.
+
+## 2026-10-03 — TASK-024 functional calculator (local)
+
+Completed the usable calculator form without disturbing the pending documentation-reader work.
+Added `useWorkdayCalculator`, Spanish input labels, accessible validation, remaining and closing
+result cards, next-day messaging, and an explicit over-limit banner. Updated the real application
+screenshot and usage documentation. Formatting, ESLint, 72 tests with 100% coverage, production
+build, and Capacitor synchronization pass. The combined local work has not been committed or
+published.
+
+## 2026-10-03 — Documentation navigation (local)
+
+Added an allowlisted static documentation reader and Home link. InnovaLogic colors, search, outline, previous/next, copy and image enlargement; generated during root build/dev. Lint, 67 tests and production build pass; desktop/mobile reader verification passes. See [reader maintenance](../documentation-web/README.md). No deployment or Android synchronization was performed for this update.
+
 ## Completed
 
 - Created the Phase 0 React and strict TypeScript foundation.
@@ -29,6 +69,10 @@
 - Completed `TASK-020` with the reusable accessible `TimeInput` component and four behavior tests.
 - Completed `TASK-021` with the `WorkedTimeInput` wrapper and three forwarding tests.
 - Completed `TASK-022` with the `LastTaskTimeInput` wrapper and three forwarding tests.
+- Completed `TASK-024` with the functional input-to-result calculator flow and five additional
+  integration scenarios.
+- Completed `TASK-025` with an editable maximum-workday input, a `07:29:30` default, and calculations
+  driven by the selected limit.
 - Published stable development milestone `v0.1.0` to the GitHub repository.
 - Updated stable dependencies, added CI/Dependabot/security policy, and completed secret scans.
 - Updated GitHub README and captured the actual current application build.
@@ -36,7 +80,8 @@
 
 ## Pending
 
-- Implement `TASK-023`, the reusable countdown presentation component.
+- Persist form and selected-zone preferences through the planned storage service.
+- Add Capacitor local notifications for exact Android background delivery.
 - Enable branch protection, secret scanning, and private vulnerability reporting in GitHub settings.
 
 ## Blocked
@@ -74,16 +119,22 @@
   `tests/components/WorkedTimeInput.test.tsx`.
 - `src/components/LastTaskTimeInput.tsx`, component exports, and
   `tests/components/LastTaskTimeInput.test.tsx`.
+- `src/hooks/useWorkdayCalculator.ts`, calculator result components, `HomePage`, calculator styles,
+  application integration tests, usage documentation, and the real application screenshot.
+- `src/components/MaximumWorkdayInput.tsx`, configurable remaining-time logic, shared workday types,
+  related unit/integration tests, and updated product documentation.
 
 ## Risks
 
 - Native Android build compatibility cannot be confirmed until the Android toolchain is installed.
+- A mobile browser may suspend or close the page and cannot guarantee an alarm at the exact instant;
+  the countdown corrects itself on return, but exact background delivery requires native scheduling.
 - The development-only Capacitor CLI dependency tree reports a moderate `uuid` advisory. Production
   dependencies are unaffected, and the available npm fix requires a forced incompatible change.
 
 ## Recommended next task
 
-Begin `TASK-023` to create the countdown presentation component.
+Implement persistence, then the Capacitor local-notification adapter and Android permission flow.
 
 ## DOC-STD-20261002
 

@@ -3,8 +3,9 @@
 ## Why this project exists
 
 A technician needs a reliable answer to a deceptively simple question: when should the final task
-be closed so the total workday does not exceed `07:29:45`? Performing the calculation manually is
-slow and easy to get wrong, especially near the end of a shift.
+be closed so the total workday does not exceed the applicable limit? The default is `07:29:30`, but
+the interface allows a different maximum. Performing the calculation manually is slow and easy to
+get wrong, especially near the end of a shift.
 
 ## Why React and TypeScript
 
@@ -116,9 +117,10 @@ casting raw user input to `TimeText` without a runtime check.
 
 ## Calculating remaining work time
 
-`calculateRemainingTime()` compares worked seconds with the shared maximum of 26,985 seconds
-(`07:29:45`). A value within the limit returns the subtraction result. A value over the limit returns
-zero remaining seconds and a separate `exceededBySeconds` value.
+`calculateRemainingTime()` compares worked seconds with a supplied maximum. When callers omit that
+argument, the shared default is 26,970 seconds (`07:29:30`). A value within the limit returns the
+subtraction result. A value over the limit returns zero remaining seconds and a separate
+`exceededBySeconds` value.
 
 The result uses `status: 'within-limit' | 'over-limit'`. This is called a discriminated union. It
 forces callers to recognize the warning case instead of treating every number as an ordinary
@@ -128,8 +130,8 @@ An alternative is returning a negative duration, but negative countdowns are con
 every component to rediscover why the number is below zero. Another alternative is throwing an
 exception; exceeding a work limit is an expected business state, not an unexpected software failure.
 
-Common mistakes include duplicating `07:29:45` in several modules, treating the exact limit as
-exceeded, or discarding how far over the limit the user is.
+Common mistakes include hard-coding the default inside components, ignoring the edited maximum,
+treating the exact limit as exceeded, or discarding how far over the limit the user is.
 
 ## Calculating a closing time across midnight
 
@@ -164,6 +166,19 @@ This predicate intentionally does not play sounds or display UI. It describes do
 hooks and components decide how to react to that state. Common mistakes include checking only strict
 equality with zero or combining the final-minute and closing states into overlapping conditions.
 
+## Keeping the countdown correct after background suspension
+
+The countdown stores the absolute closing timestamp, not a number that is blindly reduced once per
+second. Each update computes `targetTimestamp - Date.now()`. Browsers can delay or suspend callbacks
+when a phone switches applications, so decrementing local state would drift. Visibility, focus, and
+page-show events force an immediate recalculation when the user returns.
+
+The current clock and closing target use IANA zone names such as `America/New_York`. This keeps the
+display aligned with daylight-saving changes. A fixed label such as “UTC-5” would be wrong during
+part of the year. Web Audio is primed by the start button because browsers commonly reject sound
+that was not enabled by a user gesture. A browser tab still cannot guarantee an exact alarm while
+closed or suspended; native local notifications are the planned Android solution.
+
 ## Building a reusable controlled time input
 
 `TimeInput` receives its value and change callback from a parent. This is called a controlled
@@ -178,6 +193,11 @@ Validation is deliberately outside the component. Combining `validateTime()` wit
 would make validation timing difficult to change and would prevent the component from being reused
 for both domain fields. Common mistakes include using placeholder text as the only label, hiding the
 format hint when an error appears, or storing a second copy of the value inside the component.
+
+`formatTimeInput()` removes non-numeric characters, limits input to six digits, and inserts the
+separators as the user types. `completeTimeInput()` converts a complete four-digit value such as
+`1430` to `14:30:00` when the field loses focus. These are presentation conveniences; range
+validation remains separate so an entry such as `99:99:99` still produces a clear validation error.
 
 ## Adding domain meaning without duplicating an input
 
@@ -194,3 +214,22 @@ retaining the tested shared implementation.
 small on purpose: domain wording belongs in each wrapper, while labels, hints, errors, and interaction
 belong in `TimeInput`. When two domain fields need the same behavior, first improve the shared
 component instead of copying the change into both wrappers.
+
+## Connecting the calculator form
+
+`useWorkdayCalculator` is the coordination boundary between raw text and the pure time utilities. It
+stores what the user typed, initializes the maximum workday to `07:29:30`, validates all three fields
+on form submission, converts accepted values to seconds, and then asks the existing utilities for
+the remaining duration and closing time. The hook does not repeat any arithmetic formula.
+
+`HomePage` connects the hook to the reusable input and result components. Result cards only receive
+validated display values, while `AlertBanner` receives the already-formatted excess duration. This
+keeps presentation components simple and lets integration tests exercise the same path a user does.
+
+The form uses an explicit submit button instead of recalculating after every keystroke. A partial
+value such as `06:3` is normal while typing and should not produce a new result. Editing either field
+clears the previous result so output from old values is never mistaken for the current calculation.
+
+Common mistakes include calculating inside JSX, showing a negative remaining time, leaving a stale
+result visible after editing, or relying on color alone for warnings. The implemented warning uses
+`role="alert"`, and every field exposes its guidance and error through accessible relationships.

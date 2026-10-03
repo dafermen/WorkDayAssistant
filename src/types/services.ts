@@ -26,6 +26,7 @@ export interface LocalNotificationService {
 
 /** Provides a small API so audible alerts can be disabled or replaced in tests. */
 export interface AudioAlertService {
+  prime(): Promise<void>;
   play(kind: AlertKind): Promise<void>;
   stop(): void;
 }

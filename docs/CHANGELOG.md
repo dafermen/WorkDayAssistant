@@ -1,5 +1,45 @@
 # Changelog
 
+## 2026-10-03 — TASK-027 streamlined daily workflow and web deployment
+
+Added automatic `HH:mm:ss` separators for numeric input, four-digit minute entry, **Usar hora
+actual**, one-step **Calcular e iniciar**, an explicit inactive/active/ringing alarm card, alarm test,
+cancel, and new-workday actions. Clarified the meaning of every field. Added GitHub Pages production
+deployment, relative Vite assets, a real updated screenshot, and version `0.2.0`. The suite now has
+122 passing tests across 21 files with every coverage category above 95%.
+
+## 2026-10-03 — TASK-023 and TASK-026 zoned countdown (local)
+
+Added the accessible countdown component, live New York clock, selectable IANA time zones, exact
+zoned target conversion, absolute countdown resynchronization, and a repeating Web Audio closing
+alarm with explicit stop control. Editing inputs or changing zones cancels stale countdown state.
+Added daylight-saving, background-resume, audio-service, component, hook, utility, and application
+tests; the suite now has 102 passing tests across 19 files with every coverage category above 94%.
+Updated the real application screenshot and mobile-browser limitation documentation. This work is
+local and has not been published to GitHub.
+
+## 2026-10-03 — TASK-025 editable maximum workday (local)
+
+Changed the default maximum workday from `07:29:45` to `07:29:30` and exposed it as a third editable
+`HH:mm:ss` input. Remaining-time calculations and over-limit warnings now use the validated value
+visible in the form. Added the reusable maximum-workday wrapper and expanded integration, component,
+conversion, validation, and utility tests. Formatting, ESLint, 79 tests with 100% coverage,
+production build, responsive visual review, and Capacitor synchronization pass. This work remains
+local and has not been published to GitHub.
+
+## 2026-10-03 — TASK-024 functional calculator (local)
+
+Connected the two required time inputs to `useWorkdayCalculator` and the existing pure utilities.
+The application now validates submitted values, displays remaining time and recommended closing
+time, identifies next-day rollover, clears stale results after edits, and warns when `07:29:45` is
+exceeded. Updated the real application screenshot and usage documentation. Formatting, ESLint, 72
+tests with 100% coverage, production build, and Capacitor synchronization pass. This work remains
+local and has not been published to GitHub.
+
+## 2026-10-03 — Documentation navigation (local)
+
+Added an allowlisted static documentation reader and Home link. InnovaLogic colors, search, outline, previous/next, copy and image enlargement; generated during root build/dev. Lint, 67 tests and production build pass; desktop/mobile reader verification passes. See [reader maintenance](../documentation-web/README.md). No deployment or Android synchronization was performed for this update.
+
 All notable project changes are documented in this file.
 
 ## [Unreleased]

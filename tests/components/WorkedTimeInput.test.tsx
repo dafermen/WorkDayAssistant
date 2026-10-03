@@ -6,14 +6,14 @@ describe('WorkedTimeInput', () => {
   it('renders the controlled value with the worked-time label', () => {
     render(<WorkedTimeInput value="06:45:00" onChange={() => {}} />);
 
-    expect(screen.getByRole('textbox', { name: 'Worked time' })).toHaveValue('06:45:00');
+    expect(screen.getByRole('textbox', { name: 'Tiempo trabajado' })).toHaveValue('06:45:00');
   });
 
   it('forwards edited text to the change callback', () => {
     const onChange = vi.fn();
     render(<WorkedTimeInput value="" onChange={onChange} />);
 
-    fireEvent.change(screen.getByRole('textbox', { name: 'Worked time' }), {
+    fireEvent.change(screen.getByRole('textbox', { name: 'Tiempo trabajado' }), {
       target: { value: '07:15:30' },
     });
 
@@ -30,7 +30,7 @@ describe('WorkedTimeInput', () => {
       />,
     );
 
-    const input = screen.getByRole('textbox', { name: 'Worked time' });
+    const input = screen.getByRole('textbox', { name: 'Tiempo trabajado' });
 
     expect(input).toBeDisabled();
     expect(input).toHaveAttribute('aria-invalid', 'true');

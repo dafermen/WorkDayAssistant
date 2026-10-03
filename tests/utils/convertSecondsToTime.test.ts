@@ -8,7 +8,7 @@ const formattingCases = [
   { scenario: 'one complete minute', value: 60, expected: '00:01:00' },
   { scenario: 'last second before one hour', value: 3_599, expected: '00:59:59' },
   { scenario: 'one complete hour', value: 3_600, expected: '01:00:00' },
-  { scenario: 'maximum workday', value: 26_985, expected: '07:29:45' },
+  { scenario: 'default maximum workday', value: 26_970, expected: '07:29:30' },
   { scenario: 'largest valid clock duration', value: 86_399, expected: '23:59:59' },
 ] satisfies ReadonlyArray<{
   scenario: string;

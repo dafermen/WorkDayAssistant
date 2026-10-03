@@ -8,6 +8,37 @@
   font-weight: 700;
 }
 
+.time-input__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.time-input__action {
+  flex: none;
+  padding: 0;
+  border: 0;
+  color: #7dd3fc;
+  background: transparent;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 0.18rem;
+}
+
+.time-input__action:focus-visible {
+  border-radius: 0.2rem;
+  outline: 3px solid rgb(125 211 252 / 28%);
+  outline-offset: 3px;
+}
+
+.time-input__action:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
 .time-input__control {
   width: 100%;
   padding: 0.85rem 1rem;
@@ -35,14 +66,20 @@
 }
 
 .time-input__hint,
+.time-input__description,
 .time-input__error {
   margin: 0;
   font-size: 0.8rem;
   line-height: 1.4;
 }
 
-.time-input__hint {
+.time-input__hint,
+.time-input__description {
   color: #8fa3bf;
+}
+
+.time-input__description {
+  min-height: 2.25rem;
 }
 
 .time-input__error {

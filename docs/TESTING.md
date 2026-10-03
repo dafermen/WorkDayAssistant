@@ -106,3 +106,34 @@ repeating every `TimeInput` implementation test.
 `LastTaskTimeInput` mirrors the wrapper-contract tests for the final-task start label. The tests
 confirm controlled value and callback forwarding plus accessible error and disabled states without
 duplicating the shared component's complete test suite.
+
+## TASK-024 coverage
+
+Application integration tests enter both required values through their accessible labels and submit
+the real form. They verify an ordinary calculation, required and malformed values, field-error
+clearing, the explicit over-limit warning, midnight rollover, and stale-result removal after edits.
+
+## TASK-025 coverage
+
+Tests verify the `07:29:30` default, an edited `08:00:00` limit, invalid-limit feedback and recovery,
+over-limit messaging using the selected maximum, the reusable maximum input contract, and the
+utility's optional maximum parameter.
+
+## TASK-023 and TASK-026 coverage
+
+Component tests cover normal, final-minute, and closing countdown states plus the time-zone selector.
+Hook tests use a controlled clock to prove absolute countdown completion and resynchronization after
+visibility/focus events. Utility tests cover New York conversion, next-day rollover, daylight-saving
+transition, past targets, and zoned clock formatting. Service tests replace Web Audio with a fake and
+verify priming, repeated tones, stopping, unsupported browsers, and recreation after a closed context.
+Application tests exercise zone changes, countdown start/cancel, zero, alarm stop, and past-target
+feedback.
+
+## TASK-027 coverage
+
+Tests cover digit filtering, automatic separators, four-digit zero-second completion, accessible
+field explanations/actions, current-time insertion, one-step calculation and countdown start,
+inactive/active/ringing alarm confirmation, alarm testing, and new-workday reset.
+
+The completed suite contains 122 tests across 21 files. Coverage is 96.95% statements, 95% branches,
+97.56% functions, and 96.87% lines, above the 90% project gate.

@@ -1,7 +1,7 @@
 {
   "name": "workday-assistant",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -14,7 +14,10 @@
     "test:coverage": "vitest run --coverage",
     "preview": "vite preview",
     "cap:sync": "cap sync",
-    "cap:android": "cap open android"
+    "cap:android": "cap open android",
+    "docs:build": "node documentation-web/build.mjs",
+    "prebuild": "npm run docs:build",
+    "predev": "npm run docs:build"
   },
   "dependencies": {
     "@capacitor/android": "^8.5.2",

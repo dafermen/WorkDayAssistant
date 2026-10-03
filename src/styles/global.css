@@ -24,12 +24,14 @@ body {
 }
 
 button,
-input {
+input,
+select {
   font: inherit;
 }
 
 .app-shell {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   min-height: 100vh;
   place-items: center;
   padding: 1.5rem;
@@ -37,7 +39,8 @@ input {
 }
 
 .status-card {
-  width: min(100%, 34rem);
+  width: min(calc(100vw - 3rem), 48rem);
+  min-width: 0;
   padding: 2rem;
   border: 1px solid #24334d;
   border-radius: 1.25rem;

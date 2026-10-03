@@ -1,5 +1,15 @@
 # Security Audit
 
+## 2026-10-03 — v0.2.0 release review
+
+- Production dependency audit: 0 vulnerabilities.
+- Full development audit: 3 moderate findings in the Capacitor CLI `xcode` → `uuid` toolchain; the
+  suggested forced change is incompatible and production code is unaffected.
+- Source and configuration secret-pattern scan: clean.
+- Sensitive filename scan for environment files, private keys, certificates, and keystores: clean.
+- GitHub Pages workflow uses only scoped `contents: read`, `pages: write`, and `id-token: write`
+  permissions; no deployment secret or API key is stored in the repository.
+
 ## Audit date
 
 2026-10-01

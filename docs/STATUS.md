@@ -1,5 +1,40 @@
 # Status
 
+## 2026-10-03 — TASK-027 daily workflow and v0.2.0 publication
+
+Time fields now accept numeric entry without manual separators, **Usar hora actual** fills the final
+task start, and **Calcular e iniciar** performs the complete operation. The interface confirms alarm
+state and provides alarm test, cancellation, and new-workday actions. Desktop/mobile visual review,
+122 tests across 21 files, coverage above 95% in every category, build, and Capacitor sync pass.
+GitHub Pages deployment is configured for `https://dafermen.github.io/WorkDayAssistant/`.
+
+## 2026-10-03 — TASK-023 and TASK-026 zoned countdown (local)
+
+The application now shows a live `America/New_York` clock, lets the user select another supported
+IANA zone, starts an absolute countdown to the calculated closing instant, resynchronizes after
+background suspension, and repeats a browser audio alarm at zero until stopped. Formatting, ESLint,
+102 tests across 19 files, all coverage categories above 94%, production build, real desktop visual
+review, and Capacitor synchronization pass. Native background notification delivery remains pending.
+
+## 2026-10-03 — TASK-025 editable maximum workday (local)
+
+`Jornada máxima` is now an editable `HH:mm:ss` field initialized to `07:29:30`. Calculations,
+rollover results, and exceeded-limit warnings use the validated value currently shown in that field.
+Formatting, ESLint, 79 tests with 100% coverage, production build, responsive visual review, and
+Capacitor synchronization pass. This state is local and not yet published to GitHub.
+
+## 2026-10-03 — TASK-024 functional calculator (local)
+
+The calculator is now usable in the web interface: users can enter worked time and final-task start
+time, submit the form, and receive remaining-time and closing-time results or an explicit over-limit
+warning. The responsive UI and current screenshot were visually verified. Formatting, ESLint, 72
+tests with 100% coverage, production build, and Capacitor synchronization pass. This state is local
+and not yet published to GitHub.
+
+## 2026-10-03 — Documentation navigation (local)
+
+Added an allowlisted static documentation reader and Home link. InnovaLogic colors, search, outline, previous/next, copy and image enlargement; generated during root build/dev. Lint, 67 tests and production build pass; desktop/mobile reader verification passes. See [reader maintenance](../documentation-web/README.md). No deployment or Android synchronization was performed for this update.
+
 ## Project
 
 **IN PROGRESS**
@@ -31,16 +66,21 @@
 
 ## Next task
 
-`TASK-023` — create the reusable `Countdown` presentation component.
+Persist form and time-zone preferences, then add Capacitor local notifications for exact Android
+background delivery.
 
 ## Phase 3 activities
 
-| Task                             | Status      | Notes                                                        |
-| -------------------------------- | ----------- | ------------------------------------------------------------ |
-| `TASK-020` — `TimeInput`         | DONE        | Controlled, accessible shared time field with error support. |
-| `TASK-021` — `WorkedTimeInput`   | DONE        | Domain-labelled wrapper reusing all shared input behavior.   |
-| `TASK-022` — `LastTaskTimeInput` | DONE        | Final-task start wrapper reusing shared input behavior.      |
-| `TASK-023` — `Countdown`         | NOT STARTED | Recommended next task.                                       |
+| Task                             | Status | Notes                                                        |
+| -------------------------------- | ------ | ------------------------------------------------------------ |
+| `TASK-020` — `TimeInput`         | DONE   | Controlled, accessible shared time field with error support. |
+| `TASK-021` — `WorkedTimeInput`   | DONE   | Domain-labelled wrapper reusing all shared input behavior.   |
+| `TASK-022` — `LastTaskTimeInput` | DONE   | Final-task start wrapper reusing shared input behavior.      |
+| `TASK-023` — `Countdown`         | DONE   | Accessible normal, final-minute, and closing presentation.   |
+| `TASK-024` — calculator form     | DONE   | Inputs, validation, results, rollover, and limit warning.    |
+| `TASK-025` — editable maximum    | DONE   | User-editable limit with a `07:29:30` default.               |
+| `TASK-026` — zoned countdown     | DONE   | Live clock, IANA zones, absolute timer, and browser alarm.   |
+| `TASK-027` — streamlined flow    | DONE   | Numeric entry, current time, one-step start, quick actions.  |
 
 ## Phase 2 activities
 
@@ -62,8 +102,8 @@
 ## Verification
 
 - ESLint: passed.
-- Vitest: 11 test files and 67 tests passed.
-- Coverage: 100% for the currently exercised application and utility modules.
+- Vitest: 21 test files and 122 tests passed.
+- Coverage: statements 96.95%, branches 95%, functions 97.56%, lines 96.87%.
 - Production web build: passed.
 - Capacitor Android synchronization: passed.
 - Production dependency audit: 0 vulnerabilities.

@@ -9,6 +9,17 @@ npm run build
 
 The production web output is written to `dist`.
 
+## GitHub Pages
+
+`.github/workflows/pages.yml` builds and deploys `dist` after every push to `main`. Vite uses
+relative asset paths so the same build works at the project subpath and inside Capacitor.
+
+Production URL: <https://dafermen.github.io/WorkDayAssistant/>
+
+The repository's Pages source must be set to **GitHub Actions** once in repository settings. Runtime
+deployments then use only GitHub's short-lived deployment token; no application secret or API key is
+required.
+
 ## Android preparation
 
 ```bash

@@ -8,18 +8,21 @@ import { MAX_WORKDAY_SECONDS } from './workdayConstants';
  * duration. The separate excess value lets the UI explain the warning without reimplementing the
  * business rule.
  */
-export function calculateRemainingTime(worked: DurationSeconds): RemainingTimeResult {
-  if (worked > MAX_WORKDAY_SECONDS) {
+export function calculateRemainingTime(
+  worked: DurationSeconds,
+  maximumWorkday: DurationSeconds = MAX_WORKDAY_SECONDS,
+): RemainingTimeResult {
+  if (worked > maximumWorkday) {
     return {
       status: 'over-limit',
       remainingSeconds: 0,
-      exceededBySeconds: worked - MAX_WORKDAY_SECONDS,
+      exceededBySeconds: worked - maximumWorkday,
     };
   }
 
   return {
     status: 'within-limit',
-    remainingSeconds: MAX_WORKDAY_SECONDS - worked,
+    remainingSeconds: maximumWorkday - worked,
     exceededBySeconds: 0,
   };
 }

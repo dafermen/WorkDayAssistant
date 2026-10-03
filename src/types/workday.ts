@@ -1,6 +1,6 @@
 import type { DurationSeconds, RawTimeInput, TimeText } from './time';
 
-export type WorkdayField = 'workedTime' | 'lastTaskStartTime';
+export type WorkdayField = 'maximumWorkday' | 'workedTime' | 'lastTaskStartTime';
 
 export type AlertKind = 'one-minute-remaining' | 'closing-time';
 
@@ -26,12 +26,14 @@ export interface ClosingTimeResult {
 
 /** Values as entered by the user before validation. */
 export interface WorkdayInput {
+  readonly maximumWorkday: RawTimeInput;
   readonly workedTime: RawTimeInput;
   readonly lastTaskStartTime: RawTimeInput;
 }
 
 /** Validated and calculated values ready for presentation. */
 export interface WorkdayCalculation {
+  readonly maximumWorkday: TimeText;
   readonly workedTime: TimeText;
   readonly lastTaskStartTime: TimeText;
   readonly remainingTime: TimeText;
@@ -50,6 +52,6 @@ export interface TimeValidationIssue {
 
 /** Versioned shape written by the persistence service. */
 export interface PersistedWorkdayData extends WorkdayInput {
-  readonly version: 1;
+  readonly version: 2;
   readonly savedAt: string;
 }

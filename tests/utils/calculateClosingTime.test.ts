@@ -23,8 +23,8 @@ const closingTimeCases = [
   {
     scenario: 'maximum workday duration from midnight',
     start: '00:00:00',
-    remaining: 26_985,
-    expected: { time: '07:29:45', dayOffset: 0 },
+    remaining: 26_970,
+    expected: { time: '07:29:30', dayOffset: 0 },
   },
   {
     scenario: 'one second across midnight',
@@ -41,8 +41,8 @@ const closingTimeCases = [
   {
     scenario: 'maximum remaining duration across midnight',
     start: '23:59:00',
-    remaining: 26_985,
-    expected: { time: '07:28:45', dayOffset: 1 },
+    remaining: 26_970,
+    expected: { time: '07:28:30', dayOffset: 1 },
   },
 ] satisfies ReadonlyArray<{
   scenario: string;

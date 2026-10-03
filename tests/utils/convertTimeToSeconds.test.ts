@@ -6,7 +6,7 @@ const conversionCases = [
   { scenario: 'smallest one-second duration', value: '00:00:01', expected: 1 },
   { scenario: 'one complete minute', value: '00:01:00', expected: 60 },
   { scenario: 'one complete hour', value: '01:00:00', expected: 3_600 },
-  { scenario: 'maximum workday', value: '07:29:45', expected: 26_985 },
+  { scenario: 'default maximum workday', value: '07:29:30', expected: 26_970 },
   { scenario: 'largest valid clock value', value: '23:59:59', expected: 86_399 },
 ] satisfies ReadonlyArray<{
   scenario: string;

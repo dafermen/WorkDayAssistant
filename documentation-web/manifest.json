@@ -1,0 +1,65 @@
+{
+  "project": "WorkDayAssistant",
+  "language": "en",
+  "output": "public/docs",
+  "application": "../../",
+  "documents": [
+    {
+      "id": "doc-1",
+      "source": "README.md",
+      "title": "WorkDay Assistant",
+      "section": "Product"
+    },
+    {
+      "id": "doc-2",
+      "source": "docs/README.md",
+      "title": "WorkDayAssistant — Documentation map and maintenance",
+      "section": "Product"
+    },
+    {
+      "id": "doc-3",
+      "source": "docs/PROJECT.md",
+      "title": "Project",
+      "section": "Product"
+    },
+    {
+      "id": "doc-4",
+      "source": "docs/STATUS.md",
+      "title": "Status",
+      "section": "Product"
+    },
+    {
+      "id": "doc-5",
+      "source": "docs/ARCHITECTURE.md",
+      "title": "Architecture",
+      "section": "Engineering"
+    },
+    {
+      "id": "doc-6",
+      "source": "docs/JUNIOR_DEVELOPER_GUIDE.md",
+      "title": "Junior Developer Guide",
+      "section": "Engineering"
+    },
+    {
+      "id": "doc-7",
+      "source": "docs/TESTING.md",
+      "title": "Testing",
+      "section": "Engineering"
+    }
+  ],
+  "images": ["docs/images/current-app.png"],
+  "paths": [
+    {
+      "id": "doc-3",
+      "label": "Discover the product"
+    },
+    {
+      "id": "doc-4",
+      "label": "Read the guide"
+    },
+    {
+      "id": "doc-6",
+      "label": "Explore development"
+    }
+  ]
+}

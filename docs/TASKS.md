@@ -81,7 +81,7 @@ required session documentation.
 **Estimated time:** 30–60 minutes.
 
 **Acceptance criteria:** Correctly converts at least `00:00:00`, `00:00:01`, `01:00:00`,
-`07:29:45`, and `23:59:59`; contains no React, browser, storage, clock, or Capacitor dependency; tests
+`07:29:30`, and `23:59:59`; contains no React, browser, storage, clock, or Capacitor dependency; tests
 explain boundary cases.
 
 **Definition of Done:** Implementation, unit tests, and WHY-focused comments are complete; lint,
@@ -133,7 +133,8 @@ and testing guide.
 
 ## TASK-004 — Create `calculateRemainingTime()`
 
-**Objective:** Calculate the remaining duration against the maximum workday of `07:29:45`.
+**Objective:** Calculate the remaining duration against the provided maximum workday, defaulting to
+`07:29:30`.
 
 **Files to modify:** Maximum-workday constant, one utility module, its unit test, exports, and
 required documentation.
@@ -301,7 +302,101 @@ supports normal/final-minute/closing visual states, and contains no timer or ser
 
 **Documentation to update:** Standard session documentation and testing guide.
 
-**Status:** NOT STARTED
+**Status:** DONE
+
+## TASK-024 — Connect calculator inputs and results
+
+**Objective:** Let the user enter both required values and receive the workday calculation in the
+main application screen.
+
+**Description:** Coordinate the existing accessible inputs and pure utilities through
+`useWorkdayCalculator`. Validate on explicit form submission, render remaining time and recommended
+closing time, identify midnight rollover, clear stale output after edits, and present an explicit
+warning when worked time exceeds the entered maximum.
+
+**Files to modify:** Calculator hook and exports, reusable result/warning components, input labels,
+`HomePage`, related styles and tests, real application screenshot, and required documentation.
+
+**Dependencies:** Completed Phase 2 utilities and `TASK-020` through `TASK-022`.
+
+**Estimated time:** 90–120 minutes.
+
+**Acceptance criteria:** Both values can be entered as `HH:mm:ss`; missing or malformed values show
+accessible errors; a valid submission displays remaining and closing time; rollover is explicit;
+over-limit work shows the excess without a negative countdown or misleading recommendation; edits
+clear stale output.
+
+**Definition of Done:** Formatting, ESLint, tests, 90% coverage gate, production build, visual
+review, and Capacitor synchronization pass; required project documentation is updated.
+
+**Documentation to update:** README, architecture, project, roadmap, tasks, testing, junior guide,
+changelog, status, and session handoff.
+
+**Status:** DONE
+
+## TASK-025 — Make maximum workday editable
+
+**Objective:** Allow the user to adjust the maximum workday while providing `07:29:30` as the
+initial value.
+
+**Description:** Add a reusable maximum-workday input, validate it with the other form values, pass
+its numeric duration to `calculateRemainingTime`, clear stale output after edits, and include the
+selected maximum in exceeded-limit messaging.
+
+**Files to modify:** Workday types/constants and remaining-time utility, calculator hook, reusable
+input and alert components, `HomePage`, styles, related tests, current screenshot, and required
+documentation.
+
+**Dependencies:** `TASK-024` and the completed Phase 2 utilities.
+
+**Estimated time:** 60–90 minutes.
+
+**Acceptance criteria:** The maximum field starts at `07:29:30`; the user can replace it with another
+valid `HH:mm:ss` value; calculation and warning output use the edited value; invalid maximum values
+show accessible feedback; editing the maximum clears stale output.
+
+**Definition of Done:** Formatting, ESLint, tests, 90% coverage gate, production build, responsive
+visual review, and Capacitor synchronization pass; required documentation is updated.
+
+**Status:** DONE
+
+## TASK-026 — Add zoned clock, absolute countdown, and browser alarm
+
+**Objective:** Let the user monitor the real remaining time to the recommended closing instant.
+
+**Description:** Show the current time in `America/New_York` by default, allow a curated IANA time
+zone selection, resolve the calculated wall-clock closing time to an absolute timestamp, and update
+the countdown from `Date.now()`. Resynchronize after visibility, focus, and page-show events. Prime a
+Web Audio alarm from the start-button gesture and repeat it at zero until the user stops it.
+
+**Acceptance criteria:** Daylight-saving and next-day targets are resolved in the selected zone;
+background timer suspension cannot accumulate drift; editing inputs or changing zones cancels a
+stale countdown; final-minute and closing states are accessible; unsupported audio never blocks the
+visual countdown.
+
+**Definition of Done:** Formatting, ESLint, tests, 90% coverage gate, production build, responsive
+visual review, real screenshot, and Capacitor synchronization pass; required documentation updated.
+
+**Status:** DONE
+
+## TASK-027 — Streamline entry and alarm controls
+
+**Objective:** Reduce daily input effort and make alarm state unmistakable.
+
+**Description:** Format numeric time input automatically, complete four digits with zero seconds,
+offer the selected zone's current time for the final task, combine calculation and countdown start,
+show explicit alarm status, add test/cancel/reset actions, and explain each value at the point of
+entry.
+
+**Acceptance criteria:** Users never need to type colons; `1430` becomes `14:30:00`; current time is
+inserted from the visible zoned clock; one submit calculates and starts; alarm state and scheduled
+time are visible; quick actions have accessible names; stale calculations are cleared safely.
+
+**Definition of Done:** Formatting, ESLint, 122 tests, 90% coverage gate, production build,
+desktop/mobile visual review, real screenshot, Capacitor synchronization, GitHub publication, and
+GitHub Pages workflow.
+
+**Status:** DONE
 
 ## RELEASE-001 — Publish stable GitHub baseline
 

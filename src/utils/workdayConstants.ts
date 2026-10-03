@@ -1,6 +1,6 @@
 import type { DurationSeconds, TimeText } from '../types';
 
-export const MAX_WORKDAY_TIME: TimeText = '07:29:45';
+export const MAX_WORKDAY_TIME: TimeText = '07:29:30';
 
-/** One shared scalar prevents separate calculations from drifting away from the approved limit. */
-export const MAX_WORKDAY_SECONDS: DurationSeconds = 26_985;
+/** Shared defaults keep the initial form value and fallback calculation behavior synchronized. */
+export const MAX_WORKDAY_SECONDS: DurationSeconds = 26_970;

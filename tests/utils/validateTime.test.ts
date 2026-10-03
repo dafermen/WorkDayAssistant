@@ -3,11 +3,11 @@ import { validateTime } from '../../src/utils';
 
 const validCases = [
   { scenario: 'midnight', value: '00:00:00', expected: '00:00:00' },
-  { scenario: 'maximum workday', value: '07:29:45', expected: '07:29:45' },
+  { scenario: 'default maximum workday', value: '07:29:30', expected: '07:29:30' },
   { scenario: 'end of day', value: '23:59:59', expected: '23:59:59' },
-  { scenario: 'surrounding spaces', value: ' 07:29:45 ', expected: '07:29:45' },
-  { scenario: 'surrounding tabs', value: '\t07:29:45\t', expected: '07:29:45' },
-  { scenario: 'surrounding line breaks', value: '\n07:29:45\r\n', expected: '07:29:45' },
+  { scenario: 'surrounding spaces', value: ' 07:29:30 ', expected: '07:29:30' },
+  { scenario: 'surrounding tabs', value: '\t07:29:30\t', expected: '07:29:30' },
+  { scenario: 'surrounding line breaks', value: '\n07:29:30\r\n', expected: '07:29:30' },
 ] satisfies ReadonlyArray<{
   scenario: string;
   value: RawTimeInput;
@@ -26,7 +26,7 @@ const invalidCases = [
   { scenario: 'minute above 59', value: '07:60:00' },
   { scenario: 'second above 59', value: '07:29:60' },
   { scenario: 'negative segment', value: '-1:29:45' },
-  { scenario: 'extra trailing content', value: '07:29:45 UTC' },
+  { scenario: 'extra trailing content', value: '07:29:30 UTC' },
 ] satisfies ReadonlyArray<{ scenario: string; value: RawTimeInput }>;
 
 describe('validateTime', () => {
