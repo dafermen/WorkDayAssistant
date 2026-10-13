@@ -20,7 +20,7 @@
     "predev": "npm run docs:build"
   },
   "dependencies": {
-    "@capacitor/android": "^8.5.2",
+    "@capacitor/android": "^8.5.3",
     "@capacitor/core": "^8.5.2",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"
